@@ -120,7 +120,7 @@ func (s *UserService) RegisterUser(ctx context.Context, req *v1pb.RegisterUserRe
 		Password: passwordHash,
 		Nickname: req.Nickname,
 		Phone:    req.Phone,
-		Role:     "user", // Default role
+		Role:     store.RoleUser, // Default role
 	})
 	if err != nil {
 		return nil, err

@@ -130,9 +130,10 @@ func (s *AuthService) RefreshToken(ctx context.Context, req *v1pb.RefreshTokenRe
 	}
 
 	// Revoke old refresh token
+	revoked := true
 	_, err = s.Store.UpdateRefreshToken(ctx, &store.UpdateRefreshToken{
 		ID:      refreshToken.ID,
-		Revoked: &[]bool{true}[0],
+		Revoked: &revoked,
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, errors.New("failed to revoke old refresh token"))

@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/pixb/go-server/store"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -22,7 +23,7 @@ type JWTClaims struct {
 	Role     string
 }
 
-func GenerateAccessToken(userID int64, username, role, secret string) (string, error) {
+func GenerateAccessToken(userID int64, username string, role store.Role, secret string) (string, error) {
 	now := time.Now()
 	claims := JWTClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
@@ -33,7 +34,7 @@ func GenerateAccessToken(userID int64, username, role, secret string) (string, e
 		},
 		UserID:   userID,
 		Username: username,
-		Role:     role,
+		Role:     string(role),
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)

@@ -1,33 +1,29 @@
 package auth
 
-import v1pb "github.com/pixb/go-server/proto/gen/api/v1"
-
-const (
-	RoleAdmin = "admin"
-	RoleUser  = "user"
+import (
+	v1pb "github.com/pixb/go-server/proto/gen/api/v1"
+	"github.com/pixb/go-server/store"
 )
 
-func IsValidRole(role string) bool {
-	return role == RoleAdmin || role == RoleUser
-}
-
-func StringToRole(role string) v1pb.Role {
+// StringToRole converts a store Role to protobuf Role enum
+func StringToRole(role store.Role) v1pb.Role {
 	switch role {
-	case RoleAdmin:
+	case store.RoleAdmin:
 		return v1pb.Role_ROLE_ADMIN
-	case RoleUser:
+	case store.RoleUser:
 		return v1pb.Role_ROLE_USER
 	default:
 		return v1pb.Role_ROLE_UNSPECIFIED
 	}
 }
 
-func RoleToString(role v1pb.Role) string {
+// RoleToString converts protobuf Role enum to a store Role
+func RoleToString(role v1pb.Role) store.Role {
 	switch role {
 	case v1pb.Role_ROLE_ADMIN:
-		return RoleAdmin
+		return store.RoleAdmin
 	case v1pb.Role_ROLE_USER:
-		return RoleUser
+		return store.RoleUser
 	default:
 		return ""
 	}

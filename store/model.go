@@ -2,6 +2,25 @@ package store
 
 import "time"
 
+// Role is the type of a role.
+type Role string
+
+// Role constants
+const (
+	RoleAdmin Role = "admin"
+	RoleUser  Role = "user"
+)
+
+// IsValidRole checks if the role is valid
+func IsValidRole(role Role) bool {
+	return role == RoleAdmin || role == RoleUser
+}
+
+// String returns the string representation of the role
+func (r Role) String() string {
+	return string(r)
+}
+
 type User struct {
 	ID              int64
 	Username        string
@@ -9,7 +28,7 @@ type User struct {
 	Password        string
 	Phone           string
 	Email           string
-	Role            string
+	Role            Role
 	PasswordExpires time.Time
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
@@ -23,19 +42,25 @@ type UpdateUser struct {
 	Password        *string
 	Phone           *string
 	Email           *string
-	Role            *string
+	Role            *Role
 	PasswordExpires *time.Time
 	UpdatedAt       *time.Time
+}
+
+type CreateUser struct {
+	Username        string
+	Nickname        string
+	Password        string
+	Phone           string
+	Email           string
+	Role            Role
+	PasswordExpires time.Time
 }
 
 type FindUser struct {
 	ID       *int64
 	Username *string
-	Limit    *int
-}
-
-type DeleteUser struct {
-	ID int64
+	Email    *string
 }
 
 type RefreshToken struct {
@@ -56,9 +81,12 @@ type CreateRefreshToken struct {
 }
 
 type UpdateRefreshToken struct {
-	ID        int64
-	Revoked   *bool
-	UpdatedAt *time.Time
+	ID      int64
+	Revoked *bool
+}
+
+type DeleteUser struct {
+	ID int64
 }
 
 type FindRefreshToken struct {

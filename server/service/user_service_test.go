@@ -121,7 +121,7 @@ func TestUserService_RegisterUser(t *testing.T) {
 		Password:        "hashedpassword",
 		Nickname:        req.Nickname,
 		Phone:           req.Phone,
-		Role:            "user",
+		Role:            store.RoleUser,
 		PasswordExpires: time.Now().AddDate(0, 0, 90),
 		CreatedAt:       time.Now(),
 		UpdatedAt:       time.Now(),
