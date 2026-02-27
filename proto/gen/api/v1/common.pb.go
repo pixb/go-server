@@ -10,6 +10,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -30,9 +31,9 @@ type User struct {
 	Nickname          string                 `protobuf:"bytes,4,opt,name=nickname,proto3" json:"nickname,omitempty"`
 	Phone             string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
 	Role              string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
-	PasswordExpiresAt int64                  `protobuf:"varint,7,opt,name=password_expires_at,json=passwordExpiresAt,proto3" json:"password_expires_at,omitempty"`
-	CreatedAt         int64                  `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt         int64                  `protobuf:"varint,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	PasswordExpiresAt *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=password_expires_at,json=passwordExpiresAt,proto3" json:"password_expires_at,omitempty"`
+	CreatedAt         *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt         *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -109,44 +110,44 @@ func (x *User) GetRole() string {
 	return ""
 }
 
-func (x *User) GetPasswordExpiresAt() int64 {
+func (x *User) GetPasswordExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.PasswordExpiresAt
 	}
-	return 0
+	return nil
 }
 
-func (x *User) GetCreatedAt() int64 {
+func (x *User) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
-	return 0
+	return nil
 }
 
-func (x *User) GetUpdatedAt() int64 {
+func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
-	return 0
+	return nil
 }
 
 var File_api_v1_common_proto protoreflect.FileDescriptor
 
 const file_api_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x13api/v1/common.proto\x12\x0fgoserver.api.v1\x1a\x1fgoogle/api/field_behavior.proto\"\xa9\x02\n" +
+	"\x13api/v1/common.proto\x12\x0fgoserver.api.v1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xfd\x02\n" +
 	"\x04User\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\x03B\x03\xe0A\x03R\x02id\x12\x1f\n" +
 	"\busername\x18\x02 \x01(\tB\x03\xe0A\x02R\busername\x12\x19\n" +
 	"\x05email\x18\x03 \x01(\tB\x03\xe0A\x02R\x05email\x12\x1f\n" +
 	"\bnickname\x18\x04 \x01(\tB\x03\xe0A\x02R\bnickname\x12\x19\n" +
 	"\x05phone\x18\x05 \x01(\tB\x03\xe0A\x02R\x05phone\x12\x17\n" +
-	"\x04role\x18\x06 \x01(\tB\x03\xe0A\x03R\x04role\x123\n" +
-	"\x13password_expires_at\x18\a \x01(\x03B\x03\xe0A\x03R\x11passwordExpiresAt\x12\"\n" +
+	"\x04role\x18\x06 \x01(\tB\x03\xe0A\x03R\x04role\x12O\n" +
+	"\x13password_expires_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x11passwordExpiresAt\x12>\n" +
 	"\n" +
-	"created_at\x18\b \x01(\x03B\x03\xe0A\x03R\tcreatedAt\x12\"\n" +
+	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tcreatedAt\x12>\n" +
 	"\n" +
-	"updated_at\x18\t \x01(\x03B\x03\xe0A\x03R\tupdatedAtB\xb2\x01\n" +
+	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAtB\xb2\x01\n" +
 	"\x13com.goserver.api.v1B\vCommonProtoP\x01Z0github.com/pixb/go-server/proto/gen/api/v1;apiv1\xa2\x02\x03GAX\xaa\x02\x0fGoserver.Api.V1\xca\x02\x0fGoserver\\Api\\V1\xe2\x02\x1bGoserver\\Api\\V1\\GPBMetadata\xea\x02\x11Goserver::Api::V1b\x06proto3"
 
 var (
@@ -163,14 +164,18 @@ func file_api_v1_common_proto_rawDescGZIP() []byte {
 
 var file_api_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_api_v1_common_proto_goTypes = []any{
-	(*User)(nil), // 0: goserver.api.v1.User
+	(*User)(nil),                  // 0: goserver.api.v1.User
+	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
 var file_api_v1_common_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: goserver.api.v1.User.password_expires_at:type_name -> google.protobuf.Timestamp
+	1, // 1: goserver.api.v1.User.created_at:type_name -> google.protobuf.Timestamp
+	1, // 2: goserver.api.v1.User.updated_at:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_common_proto_init() }

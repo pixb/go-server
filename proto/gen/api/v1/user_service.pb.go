@@ -10,6 +10,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -102,7 +103,7 @@ type RegisterUserResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	AccessToken          string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
 	RefreshToken         string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
-	AccessTokenExpiresAt int64                  `protobuf:"varint,3,opt,name=access_token_expires_at,json=accessTokenExpiresAt,proto3" json:"access_token_expires_at,omitempty"`
+	AccessTokenExpiresAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=access_token_expires_at,json=accessTokenExpiresAt,proto3" json:"access_token_expires_at,omitempty"`
 	User                 *User                  `protobuf:"bytes,4,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -152,11 +153,11 @@ func (x *RegisterUserResponse) GetRefreshToken() string {
 	return ""
 }
 
-func (x *RegisterUserResponse) GetAccessTokenExpiresAt() int64 {
+func (x *RegisterUserResponse) GetAccessTokenExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.AccessTokenExpiresAt
 	}
-	return 0
+	return nil
 }
 
 func (x *RegisterUserResponse) GetUser() *User {
@@ -450,17 +451,17 @@ var File_api_v1_user_service_proto protoreflect.FileDescriptor
 
 const file_api_v1_user_service_proto_rawDesc = "" +
 	"\n" +
-	"\x19api/v1/user_service.proto\x12\x0fgoserver.api.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x13api/v1/common.proto\"\xae\x01\n" +
+	"\x19api/v1/user_service.proto\x12\x0fgoserver.api.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13api/v1/common.proto\"\xae\x01\n" +
 	"\x13RegisterUserRequest\x12\x1f\n" +
 	"\busername\x18\x01 \x01(\tB\x03\xe0A\x02R\busername\x12\x1f\n" +
 	"\bnickname\x18\x02 \x01(\tB\x03\xe0A\x02R\bnickname\x12\x1f\n" +
 	"\bpassword\x18\x03 \x01(\tB\x03\xe0A\x02R\bpassword\x12\x19\n" +
 	"\x05phone\x18\x04 \x01(\tB\x03\xe0A\x02R\x05phone\x12\x19\n" +
-	"\x05email\x18\x05 \x01(\tB\x03\xe0A\x02R\x05email\"\xd4\x01\n" +
+	"\x05email\x18\x05 \x01(\tB\x03\xe0A\x02R\x05email\"\xf0\x01\n" +
 	"\x14RegisterUserResponse\x12&\n" +
 	"\faccess_token\x18\x01 \x01(\tB\x03\xe0A\x03R\vaccessToken\x12(\n" +
-	"\rrefresh_token\x18\x02 \x01(\tB\x03\xe0A\x03R\frefreshToken\x12:\n" +
-	"\x17access_token_expires_at\x18\x03 \x01(\x03B\x03\xe0A\x03R\x14accessTokenExpiresAt\x12.\n" +
+	"\rrefresh_token\x18\x02 \x01(\tB\x03\xe0A\x03R\frefreshToken\x12V\n" +
+	"\x17access_token_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x14accessTokenExpiresAt\x12.\n" +
 	"\x04user\x18\x04 \x01(\v2\x15.goserver.api.v1.UserB\x03\xe0A\x03R\x04user\"\x17\n" +
 	"\x15GetUserProfileRequest\"H\n" +
 	"\x16GetUserProfileResponse\x12.\n" +
@@ -505,26 +506,28 @@ var file_api_v1_user_service_proto_goTypes = []any{
 	(*UpdateUserProfileResponse)(nil), // 5: goserver.api.v1.UpdateUserProfileResponse
 	(*ChangePasswordRequest)(nil),     // 6: goserver.api.v1.ChangePasswordRequest
 	(*ChangePasswordResponse)(nil),    // 7: goserver.api.v1.ChangePasswordResponse
-	(*User)(nil),                      // 8: goserver.api.v1.User
+	(*timestamppb.Timestamp)(nil),     // 8: google.protobuf.Timestamp
+	(*User)(nil),                      // 9: goserver.api.v1.User
 }
 var file_api_v1_user_service_proto_depIdxs = []int32{
-	8, // 0: goserver.api.v1.RegisterUserResponse.user:type_name -> goserver.api.v1.User
-	8, // 1: goserver.api.v1.GetUserProfileResponse.user:type_name -> goserver.api.v1.User
-	8, // 2: goserver.api.v1.UpdateUserProfileResponse.user:type_name -> goserver.api.v1.User
-	8, // 3: goserver.api.v1.ChangePasswordResponse.user:type_name -> goserver.api.v1.User
-	0, // 4: goserver.api.v1.UserService.RegisterUser:input_type -> goserver.api.v1.RegisterUserRequest
-	2, // 5: goserver.api.v1.UserService.GetUserProfile:input_type -> goserver.api.v1.GetUserProfileRequest
-	4, // 6: goserver.api.v1.UserService.UpdateUserProfile:input_type -> goserver.api.v1.UpdateUserProfileRequest
-	6, // 7: goserver.api.v1.UserService.ChangePassword:input_type -> goserver.api.v1.ChangePasswordRequest
-	1, // 8: goserver.api.v1.UserService.RegisterUser:output_type -> goserver.api.v1.RegisterUserResponse
-	3, // 9: goserver.api.v1.UserService.GetUserProfile:output_type -> goserver.api.v1.GetUserProfileResponse
-	5, // 10: goserver.api.v1.UserService.UpdateUserProfile:output_type -> goserver.api.v1.UpdateUserProfileResponse
-	7, // 11: goserver.api.v1.UserService.ChangePassword:output_type -> goserver.api.v1.ChangePasswordResponse
-	8, // [8:12] is the sub-list for method output_type
-	4, // [4:8] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	8, // 0: goserver.api.v1.RegisterUserResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
+	9, // 1: goserver.api.v1.RegisterUserResponse.user:type_name -> goserver.api.v1.User
+	9, // 2: goserver.api.v1.GetUserProfileResponse.user:type_name -> goserver.api.v1.User
+	9, // 3: goserver.api.v1.UpdateUserProfileResponse.user:type_name -> goserver.api.v1.User
+	9, // 4: goserver.api.v1.ChangePasswordResponse.user:type_name -> goserver.api.v1.User
+	0, // 5: goserver.api.v1.UserService.RegisterUser:input_type -> goserver.api.v1.RegisterUserRequest
+	2, // 6: goserver.api.v1.UserService.GetUserProfile:input_type -> goserver.api.v1.GetUserProfileRequest
+	4, // 7: goserver.api.v1.UserService.UpdateUserProfile:input_type -> goserver.api.v1.UpdateUserProfileRequest
+	6, // 8: goserver.api.v1.UserService.ChangePassword:input_type -> goserver.api.v1.ChangePasswordRequest
+	1, // 9: goserver.api.v1.UserService.RegisterUser:output_type -> goserver.api.v1.RegisterUserResponse
+	3, // 10: goserver.api.v1.UserService.GetUserProfile:output_type -> goserver.api.v1.GetUserProfileResponse
+	5, // 11: goserver.api.v1.UserService.UpdateUserProfile:output_type -> goserver.api.v1.UpdateUserProfileResponse
+	7, // 12: goserver.api.v1.UserService.ChangePassword:output_type -> goserver.api.v1.ChangePasswordResponse
+	9, // [9:13] is the sub-list for method output_type
+	5, // [5:9] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_user_service_proto_init() }

@@ -10,6 +10,7 @@ import (
 	v1pb "github.com/pixb/go-server/proto/gen/api/v1"
 	"github.com/pixb/go-server/server/auth"
 	"github.com/pixb/go-server/store"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // UserStore is an interface that defines the methods needed by UserService
@@ -133,9 +134,9 @@ func (s *UserService) RegisterUser(ctx context.Context, req *v1pb.RegisterUserRe
 			Nickname:          newUser.Nickname,
 			Phone:             newUser.Phone,
 			Role:              newUser.Role,
-			PasswordExpiresAt: newUser.PasswordExpires.Unix(),
-			CreatedAt:         newUser.CreatedAt.Unix(),
-			UpdatedAt:         newUser.UpdatedAt.Unix(),
+			PasswordExpiresAt: timestamppb.New(newUser.PasswordExpires),
+			CreatedAt:         timestamppb.New(newUser.CreatedAt),
+			UpdatedAt:         timestamppb.New(newUser.UpdatedAt),
 		},
 	}, nil
 }
@@ -162,9 +163,9 @@ func (s *UserService) GetUserProfile(ctx context.Context, req *v1pb.GetUserProfi
 			Nickname:          user.Nickname,
 			Phone:             user.Phone,
 			Role:              user.Role,
-			PasswordExpiresAt: user.PasswordExpires.Unix(),
-			CreatedAt:         user.CreatedAt.Unix(),
-			UpdatedAt:         user.UpdatedAt.Unix(),
+			PasswordExpiresAt: timestamppb.New(user.PasswordExpires),
+			CreatedAt:         timestamppb.New(user.CreatedAt),
+			UpdatedAt:         timestamppb.New(user.UpdatedAt),
 		},
 	}, nil
 }
@@ -231,9 +232,9 @@ func (s *UserService) UpdateUserProfile(ctx context.Context, req *v1pb.UpdateUse
 			Nickname:          updatedUser.Nickname,
 			Phone:             updatedUser.Phone,
 			Role:              updatedUser.Role,
-			PasswordExpiresAt: updatedUser.PasswordExpires.Unix(),
-			CreatedAt:         updatedUser.CreatedAt.Unix(),
-			UpdatedAt:         updatedUser.UpdatedAt.Unix(),
+			PasswordExpiresAt: timestamppb.New(updatedUser.PasswordExpires),
+			CreatedAt:         timestamppb.New(updatedUser.CreatedAt),
+			UpdatedAt:         timestamppb.New(updatedUser.UpdatedAt),
 		},
 	}, nil
 }
@@ -296,9 +297,9 @@ func (s *UserService) ChangePassword(ctx context.Context, req *v1pb.ChangePasswo
 			Nickname:          updatedUser.Nickname,
 			Phone:             updatedUser.Phone,
 			Role:              updatedUser.Role,
-			PasswordExpiresAt: updatedUser.PasswordExpires.Unix(),
-			CreatedAt:         updatedUser.CreatedAt.Unix(),
-			UpdatedAt:         updatedUser.UpdatedAt.Unix(),
+			PasswordExpiresAt: timestamppb.New(updatedUser.PasswordExpires),
+			CreatedAt:         timestamppb.New(updatedUser.CreatedAt),
+			UpdatedAt:         timestamppb.New(updatedUser.UpdatedAt),
 		},
 	}, nil
 }

@@ -251,6 +251,7 @@ components:
                 accessTokenExpiresAt:
                     readOnly: true
                     type: string
+                    format: date-time
                 user:
                     readOnly: true
                     allOf:
@@ -287,6 +288,7 @@ components:
                 accessTokenExpiresAt:
                     readOnly: true
                     type: string
+                    format: date-time
                 user:
                     readOnly: true
                     allOf:
@@ -322,6 +324,7 @@ components:
                 accessTokenExpiresAt:
                     readOnly: true
                     type: string
+                    format: date-time
                 user:
                     readOnly: true
                     allOf:
@@ -383,12 +386,15 @@ components:
                 passwordExpiresAt:
                     readOnly: true
                     type: string
+                    format: date-time
                 createdAt:
                     readOnly: true
                     type: string
+                    format: date-time
                 updatedAt:
                     readOnly: true
                     type: string
+                    format: date-time
         ValidateTokenRequest:
             required:
                 - token
@@ -414,6 +420,7 @@ components:
                 expiresAt:
                     readOnly: true
                     type: string
+                    format: date-time
 tags:
     - name: AuthService
     - name: UserService

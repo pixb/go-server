@@ -10,6 +10,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -78,7 +79,7 @@ type LoginResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	AccessToken          string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
 	RefreshToken         string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
-	AccessTokenExpiresAt int64                  `protobuf:"varint,3,opt,name=access_token_expires_at,json=accessTokenExpiresAt,proto3" json:"access_token_expires_at,omitempty"`
+	AccessTokenExpiresAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=access_token_expires_at,json=accessTokenExpiresAt,proto3" json:"access_token_expires_at,omitempty"`
 	User                 *User                  `protobuf:"bytes,4,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -128,11 +129,11 @@ func (x *LoginResponse) GetRefreshToken() string {
 	return ""
 }
 
-func (x *LoginResponse) GetAccessTokenExpiresAt() int64 {
+func (x *LoginResponse) GetAccessTokenExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.AccessTokenExpiresAt
 	}
-	return 0
+	return nil
 }
 
 func (x *LoginResponse) GetUser() *User {
@@ -190,7 +191,7 @@ type RefreshTokenResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	AccessToken          string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
 	RefreshToken         string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
-	AccessTokenExpiresAt int64                  `protobuf:"varint,3,opt,name=access_token_expires_at,json=accessTokenExpiresAt,proto3" json:"access_token_expires_at,omitempty"`
+	AccessTokenExpiresAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=access_token_expires_at,json=accessTokenExpiresAt,proto3" json:"access_token_expires_at,omitempty"`
 	User                 *User                  `protobuf:"bytes,4,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -240,11 +241,11 @@ func (x *RefreshTokenResponse) GetRefreshToken() string {
 	return ""
 }
 
-func (x *RefreshTokenResponse) GetAccessTokenExpiresAt() int64 {
+func (x *RefreshTokenResponse) GetAccessTokenExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.AccessTokenExpiresAt
 	}
-	return 0
+	return nil
 }
 
 func (x *RefreshTokenResponse) GetUser() *User {
@@ -304,7 +305,7 @@ type ValidateTokenResponse struct {
 	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Username      string                 `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
 	Role          string                 `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
-	ExpiresAt     int64                  `protobuf:"varint,5,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -367,11 +368,11 @@ func (x *ValidateTokenResponse) GetRole() string {
 	return ""
 }
 
-func (x *ValidateTokenResponse) GetExpiresAt() int64 {
+func (x *ValidateTokenResponse) GetExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.ExpiresAt
 	}
-	return 0
+	return nil
 }
 
 type LogoutRequest struct {
@@ -466,31 +467,31 @@ var File_api_v1_auth_service_proto protoreflect.FileDescriptor
 
 const file_api_v1_auth_service_proto_rawDesc = "" +
 	"\n" +
-	"\x19api/v1/auth_service.proto\x12\x0fgoserver.api.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x13api/v1/common.proto\"P\n" +
+	"\x19api/v1/auth_service.proto\x12\x0fgoserver.api.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13api/v1/common.proto\"P\n" +
 	"\fLoginRequest\x12\x1f\n" +
 	"\busername\x18\x01 \x01(\tB\x03\xe0A\x02R\busername\x12\x1f\n" +
-	"\bpassword\x18\x02 \x01(\tB\x03\xe0A\x02R\bpassword\"\xcd\x01\n" +
+	"\bpassword\x18\x02 \x01(\tB\x03\xe0A\x02R\bpassword\"\xe9\x01\n" +
 	"\rLoginResponse\x12&\n" +
 	"\faccess_token\x18\x01 \x01(\tB\x03\xe0A\x03R\vaccessToken\x12(\n" +
-	"\rrefresh_token\x18\x02 \x01(\tB\x03\xe0A\x03R\frefreshToken\x12:\n" +
-	"\x17access_token_expires_at\x18\x03 \x01(\x03B\x03\xe0A\x03R\x14accessTokenExpiresAt\x12.\n" +
+	"\rrefresh_token\x18\x02 \x01(\tB\x03\xe0A\x03R\frefreshToken\x12V\n" +
+	"\x17access_token_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x14accessTokenExpiresAt\x12.\n" +
 	"\x04user\x18\x04 \x01(\v2\x15.goserver.api.v1.UserB\x03\xe0A\x03R\x04user\"?\n" +
 	"\x13RefreshTokenRequest\x12(\n" +
-	"\rrefresh_token\x18\x01 \x01(\tB\x03\xe0A\x02R\frefreshToken\"\xd4\x01\n" +
+	"\rrefresh_token\x18\x01 \x01(\tB\x03\xe0A\x02R\frefreshToken\"\xf0\x01\n" +
 	"\x14RefreshTokenResponse\x12&\n" +
 	"\faccess_token\x18\x01 \x01(\tB\x03\xe0A\x03R\vaccessToken\x12(\n" +
-	"\rrefresh_token\x18\x02 \x01(\tB\x03\xe0A\x03R\frefreshToken\x12:\n" +
-	"\x17access_token_expires_at\x18\x03 \x01(\x03B\x03\xe0A\x03R\x14accessTokenExpiresAt\x12.\n" +
+	"\rrefresh_token\x18\x02 \x01(\tB\x03\xe0A\x03R\frefreshToken\x12V\n" +
+	"\x17access_token_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x14accessTokenExpiresAt\x12.\n" +
 	"\x04user\x18\x04 \x01(\v2\x15.goserver.api.v1.UserB\x03\xe0A\x03R\x04user\"1\n" +
 	"\x14ValidateTokenRequest\x12\x19\n" +
-	"\x05token\x18\x01 \x01(\tB\x03\xe0A\x02R\x05token\"\xae\x01\n" +
+	"\x05token\x18\x01 \x01(\tB\x03\xe0A\x02R\x05token\"\xca\x01\n" +
 	"\x15ValidateTokenResponse\x12\x19\n" +
 	"\x05valid\x18\x01 \x01(\bB\x03\xe0A\x03R\x05valid\x12\x1c\n" +
 	"\auser_id\x18\x02 \x01(\x03B\x03\xe0A\x03R\x06userId\x12\x1f\n" +
 	"\busername\x18\x03 \x01(\tB\x03\xe0A\x03R\busername\x12\x17\n" +
-	"\x04role\x18\x04 \x01(\tB\x03\xe0A\x03R\x04role\x12\"\n" +
+	"\x04role\x18\x04 \x01(\tB\x03\xe0A\x03R\x04role\x12>\n" +
 	"\n" +
-	"expires_at\x18\x05 \x01(\x03B\x03\xe0A\x03R\texpiresAt\"*\n" +
+	"expires_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\texpiresAt\"*\n" +
 	"\rLogoutRequest\x12\x19\n" +
 	"\x05token\x18\x01 \x01(\tB\x03\xe0A\x02R\x05token\"/\n" +
 	"\x0eLogoutResponse\x12\x1d\n" +
@@ -524,24 +525,28 @@ var file_api_v1_auth_service_proto_goTypes = []any{
 	(*ValidateTokenResponse)(nil), // 5: goserver.api.v1.ValidateTokenResponse
 	(*LogoutRequest)(nil),         // 6: goserver.api.v1.LogoutRequest
 	(*LogoutResponse)(nil),        // 7: goserver.api.v1.LogoutResponse
-	(*User)(nil),                  // 8: goserver.api.v1.User
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
+	(*User)(nil),                  // 9: goserver.api.v1.User
 }
 var file_api_v1_auth_service_proto_depIdxs = []int32{
-	8, // 0: goserver.api.v1.LoginResponse.user:type_name -> goserver.api.v1.User
-	8, // 1: goserver.api.v1.RefreshTokenResponse.user:type_name -> goserver.api.v1.User
-	0, // 2: goserver.api.v1.AuthService.Login:input_type -> goserver.api.v1.LoginRequest
-	2, // 3: goserver.api.v1.AuthService.RefreshToken:input_type -> goserver.api.v1.RefreshTokenRequest
-	4, // 4: goserver.api.v1.AuthService.ValidateToken:input_type -> goserver.api.v1.ValidateTokenRequest
-	6, // 5: goserver.api.v1.AuthService.Logout:input_type -> goserver.api.v1.LogoutRequest
-	1, // 6: goserver.api.v1.AuthService.Login:output_type -> goserver.api.v1.LoginResponse
-	3, // 7: goserver.api.v1.AuthService.RefreshToken:output_type -> goserver.api.v1.RefreshTokenResponse
-	5, // 8: goserver.api.v1.AuthService.ValidateToken:output_type -> goserver.api.v1.ValidateTokenResponse
-	7, // 9: goserver.api.v1.AuthService.Logout:output_type -> goserver.api.v1.LogoutResponse
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	8, // 0: goserver.api.v1.LoginResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
+	9, // 1: goserver.api.v1.LoginResponse.user:type_name -> goserver.api.v1.User
+	8, // 2: goserver.api.v1.RefreshTokenResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
+	9, // 3: goserver.api.v1.RefreshTokenResponse.user:type_name -> goserver.api.v1.User
+	8, // 4: goserver.api.v1.ValidateTokenResponse.expires_at:type_name -> google.protobuf.Timestamp
+	0, // 5: goserver.api.v1.AuthService.Login:input_type -> goserver.api.v1.LoginRequest
+	2, // 6: goserver.api.v1.AuthService.RefreshToken:input_type -> goserver.api.v1.RefreshTokenRequest
+	4, // 7: goserver.api.v1.AuthService.ValidateToken:input_type -> goserver.api.v1.ValidateTokenRequest
+	6, // 8: goserver.api.v1.AuthService.Logout:input_type -> goserver.api.v1.LogoutRequest
+	1, // 9: goserver.api.v1.AuthService.Login:output_type -> goserver.api.v1.LoginResponse
+	3, // 10: goserver.api.v1.AuthService.RefreshToken:output_type -> goserver.api.v1.RefreshTokenResponse
+	5, // 11: goserver.api.v1.AuthService.ValidateToken:output_type -> goserver.api.v1.ValidateTokenResponse
+	7, // 12: goserver.api.v1.AuthService.Logout:output_type -> goserver.api.v1.LogoutResponse
+	9, // [9:13] is the sub-list for method output_type
+	5, // [5:9] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_auth_service_proto_init() }

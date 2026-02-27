@@ -5,13 +5,15 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_api_field_behavior } from "../../google/api/field_behavior_pb";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file api/v1/common.proto.
  */
 export const file_api_v1_common: GenFile = /*@__PURE__*/
-  fileDesc("ChNhcGkvdjEvY29tbW9uLnByb3RvEg9nb3NlcnZlci5hcGkudjEi1AEKBFVzZXISDwoCaWQYASABKANCA+BBAxIVCgh1c2VybmFtZRgCIAEoCUID4EECEhIKBWVtYWlsGAMgASgJQgPgQQISFQoIbmlja25hbWUYBCABKAlCA+BBAhISCgVwaG9uZRgFIAEoCUID4EECEhEKBHJvbGUYBiABKAlCA+BBAxIgChNwYXNzd29yZF9leHBpcmVzX2F0GAcgASgDQgPgQQMSFwoKY3JlYXRlZF9hdBgIIAEoA0ID4EEDEhcKCnVwZGF0ZWRfYXQYCSABKANCA+BBA0KyAQoTY29tLmdvc2VydmVyLmFwaS52MUILQ29tbW9uUHJvdG9QAVowZ2l0aHViLmNvbS9waXhiL2dvLXNlcnZlci9wcm90by9nZW4vYXBpL3YxO2FwaXYxogIDR0FYqgIPR29zZXJ2ZXIuQXBpLlYxygIPR29zZXJ2ZXJcQXBpXFYx4gIbR29zZXJ2ZXJcQXBpXFYxXEdQQk1ldGFkYXRh6gIRR29zZXJ2ZXI6OkFwaTo6VjFiBnByb3RvMw", [file_google_api_field_behavior]);
+  fileDesc("ChNhcGkvdjEvY29tbW9uLnByb3RvEg9nb3NlcnZlci5hcGkudjEiqAIKBFVzZXISDwoCaWQYASABKANCA+BBAxIVCgh1c2VybmFtZRgCIAEoCUID4EECEhIKBWVtYWlsGAMgASgJQgPgQQISFQoIbmlja25hbWUYBCABKAlCA+BBAhISCgVwaG9uZRgFIAEoCUID4EECEhEKBHJvbGUYBiABKAlCA+BBAxI8ChNwYXNzd29yZF9leHBpcmVzX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjMKCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSMwoKdXBkYXRlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0KyAQoTY29tLmdvc2VydmVyLmFwaS52MUILQ29tbW9uUHJvdG9QAVowZ2l0aHViLmNvbS9waXhiL2dvLXNlcnZlci9wcm90by9nZW4vYXBpL3YxO2FwaXYxogIDR0FYqgIPR29zZXJ2ZXIuQXBpLlYxygIPR29zZXJ2ZXJcQXBpXFYx4gIbR29zZXJ2ZXJcQXBpXFYxXEdQQk1ldGFkYXRh6gIRR29zZXJ2ZXI6OkFwaTo6VjFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message goserver.api.v1.User
@@ -48,19 +50,19 @@ export type User = Message<"goserver.api.v1.User"> & {
   role: string;
 
   /**
-   * @generated from field: int64 password_expires_at = 7;
+   * @generated from field: google.protobuf.Timestamp password_expires_at = 7;
    */
-  passwordExpiresAt: bigint;
+  passwordExpiresAt?: Timestamp;
 
   /**
-   * @generated from field: int64 created_at = 8;
+   * @generated from field: google.protobuf.Timestamp created_at = 8;
    */
-  createdAt: bigint;
+  createdAt?: Timestamp;
 
   /**
-   * @generated from field: int64 updated_at = 9;
+   * @generated from field: google.protobuf.Timestamp updated_at = 9;
    */
-  updatedAt: bigint;
+  updatedAt?: Timestamp;
 };
 
 /**

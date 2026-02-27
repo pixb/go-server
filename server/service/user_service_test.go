@@ -141,6 +141,9 @@ func TestUserService_RegisterUser(t *testing.T) {
 	assert.Equal(t, req.Nickname, resp.User.Nickname)
 	assert.Equal(t, req.Phone, resp.User.Phone)
 	assert.Equal(t, "user", resp.User.Role)
+	assert.NotNil(t, resp.User.PasswordExpiresAt)
+	assert.NotNil(t, resp.User.CreatedAt)
+	assert.NotNil(t, resp.User.UpdatedAt)
 
 	// Verify mock calls
 	mockStore.AssertExpectations(t)

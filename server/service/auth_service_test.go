@@ -53,10 +53,13 @@ func TestAuthService_Login(t *testing.T) {
 	assert.NotNil(t, resp)
 	assert.NotEmpty(t, resp.AccessToken)
 	assert.NotEmpty(t, resp.RefreshToken)
-	assert.NotEmpty(t, resp.AccessTokenExpiresAt)
+	assert.NotNil(t, resp.AccessTokenExpiresAt)
 	assert.NotNil(t, resp.User)
 	assert.Equal(t, int64(1), resp.User.Id)
 	assert.Equal(t, req.Username, resp.User.Username)
+	assert.NotNil(t, resp.User.PasswordExpiresAt)
+	assert.NotNil(t, resp.User.CreatedAt)
+	assert.NotNil(t, resp.User.UpdatedAt)
 
 	// Verify mock calls
 	mockStore.AssertExpectations(t)
@@ -116,10 +119,13 @@ func TestAuthService_RefreshToken(t *testing.T) {
 	assert.NotNil(t, resp)
 	assert.NotEmpty(t, resp.AccessToken)
 	assert.NotEmpty(t, resp.RefreshToken)
-	assert.NotEmpty(t, resp.AccessTokenExpiresAt)
+	assert.NotNil(t, resp.AccessTokenExpiresAt)
 	assert.NotNil(t, resp.User)
 	assert.Equal(t, int64(1), resp.User.Id)
 	assert.Equal(t, "testuser", resp.User.Username)
+	assert.NotNil(t, resp.User.PasswordExpiresAt)
+	assert.NotNil(t, resp.User.CreatedAt)
+	assert.NotNil(t, resp.User.UpdatedAt)
 
 	// Verify mock calls
 	mockStore.AssertExpectations(t)

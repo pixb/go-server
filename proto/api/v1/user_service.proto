@@ -5,6 +5,7 @@ package goserver.api.v1;
 import "google/api/annotations.proto";
 import "google/api/client.proto";
 import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
 import "api/v1/common.proto";
 
 option go_package = "api/v1";
@@ -56,7 +57,7 @@ message RegisterUserRequest {
 message RegisterUserResponse {
   string access_token = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
   string refresh_token = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
-  int64 access_token_expires_at = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp access_token_expires_at = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
   User user = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 

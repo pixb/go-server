@@ -7,6 +7,8 @@ import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2
 import { file_google_api_annotations } from "../../google/api/annotations_pb";
 import { file_google_api_client } from "../../google/api/client_pb";
 import { file_google_api_field_behavior } from "../../google/api/field_behavior_pb";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { User } from "./common_pb";
 import { file_api_v1_common } from "./common_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -15,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file api/v1/auth_service.proto.
  */
 export const file_api_v1_auth_service: GenFile = /*@__PURE__*/
-  fileDesc("ChlhcGkvdjEvYXV0aF9zZXJ2aWNlLnByb3RvEg9nb3NlcnZlci5hcGkudjEiPAoMTG9naW5SZXF1ZXN0EhUKCHVzZXJuYW1lGAEgASgJQgPgQQISFQoIcGFzc3dvcmQYAiABKAlCA+BBAiKWAQoNTG9naW5SZXNwb25zZRIZCgxhY2Nlc3NfdG9rZW4YASABKAlCA+BBAxIaCg1yZWZyZXNoX3Rva2VuGAIgASgJQgPgQQMSJAoXYWNjZXNzX3Rva2VuX2V4cGlyZXNfYXQYAyABKANCA+BBAxIoCgR1c2VyGAQgASgLMhUuZ29zZXJ2ZXIuYXBpLnYxLlVzZXJCA+BBAyIxChNSZWZyZXNoVG9rZW5SZXF1ZXN0EhoKDXJlZnJlc2hfdG9rZW4YASABKAlCA+BBAiKdAQoUUmVmcmVzaFRva2VuUmVzcG9uc2USGQoMYWNjZXNzX3Rva2VuGAEgASgJQgPgQQMSGgoNcmVmcmVzaF90b2tlbhgCIAEoCUID4EEDEiQKF2FjY2Vzc190b2tlbl9leHBpcmVzX2F0GAMgASgDQgPgQQMSKAoEdXNlchgEIAEoCzIVLmdvc2VydmVyLmFwaS52MS5Vc2VyQgPgQQMiKgoUVmFsaWRhdGVUb2tlblJlcXVlc3QSEgoFdG9rZW4YASABKAlCA+BBAiKEAQoVVmFsaWRhdGVUb2tlblJlc3BvbnNlEhIKBXZhbGlkGAEgASgIQgPgQQMSFAoHdXNlcl9pZBgCIAEoA0ID4EEDEhUKCHVzZXJuYW1lGAMgASgJQgPgQQMSEQoEcm9sZRgEIAEoCUID4EEDEhcKCmV4cGlyZXNfYXQYBSABKANCA+BBAyIjCg1Mb2dvdXRSZXF1ZXN0EhIKBXRva2VuGAEgASgJQgPgQQIiJgoOTG9nb3V0UmVzcG9uc2USFAoHc3VjY2VzcxgBIAEoCEID4EEDMpUECgtBdXRoU2VydmljZRJ5CgVMb2dpbhIdLmdvc2VydmVyLmFwaS52MS5Mb2dpblJlcXVlc3QaHi5nb3NlcnZlci5hcGkudjEuTG9naW5SZXNwb25zZSIx2kERdXNlcm5hbWUscGFzc3dvcmSC0+STAhc6ASoiEi9hcGkvdjEvYXV0aC9sb2dpbhKMAQoMUmVmcmVzaFRva2VuEiQuZ29zZXJ2ZXIuYXBpLnYxLlJlZnJlc2hUb2tlblJlcXVlc3QaJS5nb3NlcnZlci5hcGkudjEuUmVmcmVzaFRva2VuUmVzcG9uc2UiL9pBDXJlZnJlc2hfdG9rZW6C0+STAhk6ASoiFC9hcGkvdjEvYXV0aC9yZWZyZXNoEogBCg1WYWxpZGF0ZVRva2VuEiUuZ29zZXJ2ZXIuYXBpLnYxLlZhbGlkYXRlVG9rZW5SZXF1ZXN0GiYuZ29zZXJ2ZXIuYXBpLnYxLlZhbGlkYXRlVG9rZW5SZXNwb25zZSIo2kEFdG9rZW6C0+STAho6ASoiFS9hcGkvdjEvYXV0aC92YWxpZGF0ZRJxCgZMb2dvdXQSHi5nb3NlcnZlci5hcGkudjEuTG9nb3V0UmVxdWVzdBofLmdvc2VydmVyLmFwaS52MS5Mb2dvdXRSZXNwb25zZSIm2kEFdG9rZW6C0+STAhg6ASoiEy9hcGkvdjEvYXV0aC9sb2dvdXRCtwEKE2NvbS5nb3NlcnZlci5hcGkudjFCEEF1dGhTZXJ2aWNlUHJvdG9QAVowZ2l0aHViLmNvbS9waXhiL2dvLXNlcnZlci9wcm90by9nZW4vYXBpL3YxO2FwaXYxogIDR0FYqgIPR29zZXJ2ZXIuQXBpLlYxygIPR29zZXJ2ZXJcQXBpXFYx4gIbR29zZXJ2ZXJcQXBpXFYxXEdQQk1ldGFkYXRh6gIRR29zZXJ2ZXI6OkFwaTo6VjFiBnByb3RvMw", [file_google_api_annotations, file_google_api_client, file_google_api_field_behavior, file_api_v1_common]);
+  fileDesc("ChlhcGkvdjEvYXV0aF9zZXJ2aWNlLnByb3RvEg9nb3NlcnZlci5hcGkudjEiPAoMTG9naW5SZXF1ZXN0EhUKCHVzZXJuYW1lGAEgASgJQgPgQQISFQoIcGFzc3dvcmQYAiABKAlCA+BBAiKyAQoNTG9naW5SZXNwb25zZRIZCgxhY2Nlc3NfdG9rZW4YASABKAlCA+BBAxIaCg1yZWZyZXNoX3Rva2VuGAIgASgJQgPgQQMSQAoXYWNjZXNzX3Rva2VuX2V4cGlyZXNfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSKAoEdXNlchgEIAEoCzIVLmdvc2VydmVyLmFwaS52MS5Vc2VyQgPgQQMiMQoTUmVmcmVzaFRva2VuUmVxdWVzdBIaCg1yZWZyZXNoX3Rva2VuGAEgASgJQgPgQQIiuQEKFFJlZnJlc2hUb2tlblJlc3BvbnNlEhkKDGFjY2Vzc190b2tlbhgBIAEoCUID4EEDEhoKDXJlZnJlc2hfdG9rZW4YAiABKAlCA+BBAxJAChdhY2Nlc3NfdG9rZW5fZXhwaXJlc19hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIoCgR1c2VyGAQgASgLMhUuZ29zZXJ2ZXIuYXBpLnYxLlVzZXJCA+BBAyIqChRWYWxpZGF0ZVRva2VuUmVxdWVzdBISCgV0b2tlbhgBIAEoCUID4EECIqABChVWYWxpZGF0ZVRva2VuUmVzcG9uc2USEgoFdmFsaWQYASABKAhCA+BBAxIUCgd1c2VyX2lkGAIgASgDQgPgQQMSFQoIdXNlcm5hbWUYAyABKAlCA+BBAxIRCgRyb2xlGAQgASgJQgPgQQMSMwoKZXhwaXJlc19hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAyIjCg1Mb2dvdXRSZXF1ZXN0EhIKBXRva2VuGAEgASgJQgPgQQIiJgoOTG9nb3V0UmVzcG9uc2USFAoHc3VjY2VzcxgBIAEoCEID4EEDMpUECgtBdXRoU2VydmljZRJ5CgVMb2dpbhIdLmdvc2VydmVyLmFwaS52MS5Mb2dpblJlcXVlc3QaHi5nb3NlcnZlci5hcGkudjEuTG9naW5SZXNwb25zZSIx2kERdXNlcm5hbWUscGFzc3dvcmSC0+STAhc6ASoiEi9hcGkvdjEvYXV0aC9sb2dpbhKMAQoMUmVmcmVzaFRva2VuEiQuZ29zZXJ2ZXIuYXBpLnYxLlJlZnJlc2hUb2tlblJlcXVlc3QaJS5nb3NlcnZlci5hcGkudjEuUmVmcmVzaFRva2VuUmVzcG9uc2UiL9pBDXJlZnJlc2hfdG9rZW6C0+STAhk6ASoiFC9hcGkvdjEvYXV0aC9yZWZyZXNoEogBCg1WYWxpZGF0ZVRva2VuEiUuZ29zZXJ2ZXIuYXBpLnYxLlZhbGlkYXRlVG9rZW5SZXF1ZXN0GiYuZ29zZXJ2ZXIuYXBpLnYxLlZhbGlkYXRlVG9rZW5SZXNwb25zZSIo2kEFdG9rZW6C0+STAho6ASoiFS9hcGkvdjEvYXV0aC92YWxpZGF0ZRJxCgZMb2dvdXQSHi5nb3NlcnZlci5hcGkudjEuTG9nb3V0UmVxdWVzdBofLmdvc2VydmVyLmFwaS52MS5Mb2dvdXRSZXNwb25zZSIm2kEFdG9rZW6C0+STAhg6ASoiEy9hcGkvdjEvYXV0aC9sb2dvdXRCtwEKE2NvbS5nb3NlcnZlci5hcGkudjFCEEF1dGhTZXJ2aWNlUHJvdG9QAVowZ2l0aHViLmNvbS9waXhiL2dvLXNlcnZlci9wcm90by9nZW4vYXBpL3YxO2FwaXYxogIDR0FYqgIPR29zZXJ2ZXIuQXBpLlYxygIPR29zZXJ2ZXJcQXBpXFYx4gIbR29zZXJ2ZXJcQXBpXFYxXEdQQk1ldGFkYXRh6gIRR29zZXJ2ZXI6OkFwaTo6VjFiBnByb3RvMw", [file_google_api_annotations, file_google_api_client, file_google_api_field_behavior, file_google_protobuf_timestamp, file_api_v1_common]);
 
 /**
  * @generated from message goserver.api.v1.LoginRequest
@@ -54,9 +56,9 @@ export type LoginResponse = Message<"goserver.api.v1.LoginResponse"> & {
   refreshToken: string;
 
   /**
-   * @generated from field: int64 access_token_expires_at = 3;
+   * @generated from field: google.protobuf.Timestamp access_token_expires_at = 3;
    */
-  accessTokenExpiresAt: bigint;
+  accessTokenExpiresAt?: Timestamp;
 
   /**
    * @generated from field: goserver.api.v1.User user = 4;
@@ -103,9 +105,9 @@ export type RefreshTokenResponse = Message<"goserver.api.v1.RefreshTokenResponse
   refreshToken: string;
 
   /**
-   * @generated from field: int64 access_token_expires_at = 3;
+   * @generated from field: google.protobuf.Timestamp access_token_expires_at = 3;
    */
-  accessTokenExpiresAt: bigint;
+  accessTokenExpiresAt?: Timestamp;
 
   /**
    * @generated from field: goserver.api.v1.User user = 4;
@@ -162,9 +164,9 @@ export type ValidateTokenResponse = Message<"goserver.api.v1.ValidateTokenRespon
   role: string;
 
   /**
-   * @generated from field: int64 expires_at = 5;
+   * @generated from field: google.protobuf.Timestamp expires_at = 5;
    */
-  expiresAt: bigint;
+  expiresAt?: Timestamp;
 };
 
 /**

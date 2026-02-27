@@ -10,6 +10,7 @@ import (
 	v1pb "github.com/pixb/go-server/proto/gen/api/v1"
 	"github.com/pixb/go-server/server/auth"
 	"github.com/pixb/go-server/store"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // AuthStore is an interface that defines the methods needed by AuthService
@@ -85,7 +86,7 @@ func (s *AuthService) Login(ctx context.Context, req *v1pb.LoginRequest) (*v1pb.
 	return &v1pb.LoginResponse{
 		AccessToken:          accessToken,
 		RefreshToken:         refreshTokenString,
-		AccessTokenExpiresAt: accessTokenExpiresAt.Unix(),
+		AccessTokenExpiresAt: timestamppb.New(accessTokenExpiresAt),
 		User: &v1pb.User{
 			Id:                user.ID,
 			Username:          user.Username,
@@ -93,9 +94,9 @@ func (s *AuthService) Login(ctx context.Context, req *v1pb.LoginRequest) (*v1pb.
 			Nickname:          user.Nickname,
 			Phone:             user.Phone,
 			Role:              user.Role,
-			PasswordExpiresAt: user.PasswordExpires.Unix(),
-			CreatedAt:         user.CreatedAt.Unix(),
-			UpdatedAt:         user.UpdatedAt.Unix(),
+			PasswordExpiresAt: timestamppb.New(user.PasswordExpires),
+			CreatedAt:         timestamppb.New(user.CreatedAt),
+			UpdatedAt:         timestamppb.New(user.UpdatedAt),
 		},
 	}, nil
 }
@@ -165,7 +166,7 @@ func (s *AuthService) RefreshToken(ctx context.Context, req *v1pb.RefreshTokenRe
 	return &v1pb.RefreshTokenResponse{
 		AccessToken:          newAccessToken,
 		RefreshToken:         newRefreshTokenString,
-		AccessTokenExpiresAt: accessTokenExpiresAt.Unix(),
+		AccessTokenExpiresAt: timestamppb.New(accessTokenExpiresAt),
 		User: &v1pb.User{
 			Id:                user.ID,
 			Username:          user.Username,
@@ -173,9 +174,9 @@ func (s *AuthService) RefreshToken(ctx context.Context, req *v1pb.RefreshTokenRe
 			Nickname:          user.Nickname,
 			Phone:             user.Phone,
 			Role:              user.Role,
-			PasswordExpiresAt: user.PasswordExpires.Unix(),
-			CreatedAt:         user.CreatedAt.Unix(),
-			UpdatedAt:         user.UpdatedAt.Unix(),
+			PasswordExpiresAt: timestamppb.New(user.PasswordExpires),
+			CreatedAt:         timestamppb.New(user.CreatedAt),
+			UpdatedAt:         timestamppb.New(user.UpdatedAt),
 		},
 	}, nil
 }
