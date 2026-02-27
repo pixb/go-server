@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package goserver.store;
+
+option go_package = "store";
+
+enum InstanceSettingKey {
+  INSTANCE_SETTING_KEY_UNSPECIFIED = 0;
+  // BASIC is the key for basic settings.
+  BASIC = 1;
+}
+
+message InstanceSetting {
+  InstanceSettingKey key = 1;
+  oneof value {
+    InstanceBasicSetting basic_setting = 2;
+  }
+}
+
+message InstanceBasicSetting {
+  // The secret key for instance. Mainly used for session management.
+  string secret_key = 1;
+  // The current schema version of database.
+  string schema_version = 2;
+}

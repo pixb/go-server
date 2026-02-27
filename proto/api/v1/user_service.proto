@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package goserver.api.v1;
+
+import "google/api/annotations.proto";
+import "google/api/client.proto";
+import "google/api/field_behavior.proto";
+import "api/v1/common.proto";
+
+option go_package = "api/v1";
+
+service UserService {
+  // 注册用户
+  rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/users"
+      body: "*"
+    };
+    option (google.api.method_signature) = "username,nickname,password,phone,email";
+  }
+
+  // 获取用户信息
+  rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse) {
+    option (google.api.http) = {get: "/api/v1/users/me"};
+    option (google.api.method_signature) = "";
+  }
+
+  // 更新用户信息
+  rpc UpdateUserProfile(UpdateUserProfileRequest) returns (UpdateUserProfileResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/users/me"
+      body: "*"
+    };
+    option (google.api.method_signature) = "nickname,phone,email";
+  }
+
+  // 修改密码
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/users/me/password"
+      body: "*"
+    };
+    option (google.api.method_signature) = "old_password,new_password";
+  }
+}
+
+message RegisterUserRequest {
+  string username = 1 [(google.api.field_behavior) = REQUIRED];
+  string nickname = 2 [(google.api.field_behavior) = REQUIRED];
+  string password = 3 [(google.api.field_behavior) = REQUIRED];
+  string phone = 4 [(google.api.field_behavior) = REQUIRED];
+  string email = 5 [(google.api.field_behavior) = REQUIRED];
+}
+
+
+message RegisterUserResponse {
+  string access_token = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+  string refresh_token = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+  int64 access_token_expires_at = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+  User user = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+message GetUserProfileRequest {}
+
+message GetUserProfileResponse {
+  User user = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+message UpdateUserProfileRequest {
+  string nickname = 1 [(google.api.field_behavior) = OPTIONAL];
+  string phone = 2 [(google.api.field_behavior) = OPTIONAL];
+  string email = 3 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message UpdateUserProfileResponse {
+  User user = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
+
+message ChangePasswordRequest {
+  string old_password = 1 [(google.api.field_behavior) = REQUIRED];
+  string new_password = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ChangePasswordResponse {
+  User user = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}

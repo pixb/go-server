@@ -1,0 +1,419 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /api/v1/auth/login:
+        post:
+            tags:
+                - AuthService
+            operationId: AuthService_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/LoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/LoginResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/v1/auth/logout:
+        post:
+            tags:
+                - AuthService
+            operationId: AuthService_Logout
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/LogoutRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/LogoutResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/v1/auth/refresh:
+        post:
+            tags:
+                - AuthService
+            operationId: AuthService_RefreshToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/RefreshTokenRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RefreshTokenResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/v1/auth/validate:
+        post:
+            tags:
+                - AuthService
+            operationId: AuthService_ValidateToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ValidateTokenRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ValidateTokenResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/v1/users:
+        post:
+            tags:
+                - UserService
+            description: 注册用户
+            operationId: UserService_RegisterUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/RegisterUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RegisterUserResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/v1/users/me:
+        get:
+            tags:
+                - UserService
+            description: 获取用户信息
+            operationId: UserService_GetUserProfile
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetUserProfileResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        patch:
+            tags:
+                - UserService
+            description: 更新用户信息
+            operationId: UserService_UpdateUserProfile
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateUserProfileRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateUserProfileResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/v1/users/me/password:
+        post:
+            tags:
+                - UserService
+            description: 修改密码
+            operationId: UserService_ChangePassword
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ChangePasswordRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ChangePasswordResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+components:
+    schemas:
+        ChangePasswordRequest:
+            required:
+                - oldPassword
+                - newPassword
+            type: object
+            properties:
+                oldPassword:
+                    type: string
+                newPassword:
+                    type: string
+        ChangePasswordResponse:
+            type: object
+            properties:
+                user:
+                    readOnly: true
+                    allOf:
+                        - $ref: '#/components/schemas/User'
+        GetUserProfileResponse:
+            type: object
+            properties:
+                user:
+                    readOnly: true
+                    allOf:
+                        - $ref: '#/components/schemas/User'
+        GoogleProtobufAny:
+            type: object
+            properties:
+                '@type':
+                    type: string
+                    description: The type of the serialized message.
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+        LoginRequest:
+            required:
+                - username
+                - password
+            type: object
+            properties:
+                username:
+                    type: string
+                password:
+                    type: string
+        LoginResponse:
+            type: object
+            properties:
+                accessToken:
+                    readOnly: true
+                    type: string
+                refreshToken:
+                    readOnly: true
+                    type: string
+                accessTokenExpiresAt:
+                    readOnly: true
+                    type: string
+                user:
+                    readOnly: true
+                    allOf:
+                        - $ref: '#/components/schemas/User'
+        LogoutRequest:
+            required:
+                - token
+            type: object
+            properties:
+                token:
+                    type: string
+        LogoutResponse:
+            type: object
+            properties:
+                success:
+                    readOnly: true
+                    type: boolean
+        RefreshTokenRequest:
+            required:
+                - refreshToken
+            type: object
+            properties:
+                refreshToken:
+                    type: string
+        RefreshTokenResponse:
+            type: object
+            properties:
+                accessToken:
+                    readOnly: true
+                    type: string
+                refreshToken:
+                    readOnly: true
+                    type: string
+                accessTokenExpiresAt:
+                    readOnly: true
+                    type: string
+                user:
+                    readOnly: true
+                    allOf:
+                        - $ref: '#/components/schemas/User'
+        RegisterUserRequest:
+            required:
+                - username
+                - nickname
+                - password
+                - phone
+                - email
+            type: object
+            properties:
+                username:
+                    type: string
+                nickname:
+                    type: string
+                password:
+                    type: string
+                phone:
+                    type: string
+                email:
+                    type: string
+        RegisterUserResponse:
+            type: object
+            properties:
+                accessToken:
+                    readOnly: true
+                    type: string
+                refreshToken:
+                    readOnly: true
+                    type: string
+                accessTokenExpiresAt:
+                    readOnly: true
+                    type: string
+                user:
+                    readOnly: true
+                    allOf:
+                        - $ref: '#/components/schemas/User'
+        Status:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+                    format: int32
+                message:
+                    type: string
+                    description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+                details:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GoogleProtobufAny'
+                    description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+            description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
+        UpdateUserProfileRequest:
+            type: object
+            properties:
+                nickname:
+                    type: string
+                phone:
+                    type: string
+                email:
+                    type: string
+        UpdateUserProfileResponse:
+            type: object
+            properties:
+                user:
+                    readOnly: true
+                    allOf:
+                        - $ref: '#/components/schemas/User'
+        User:
+            required:
+                - username
+                - email
+                - nickname
+                - phone
+            type: object
+            properties:
+                id:
+                    readOnly: true
+                    type: string
+                username:
+                    type: string
+                email:
+                    type: string
+                nickname:
+                    type: string
+                phone:
+                    type: string
+                role:
+                    readOnly: true
+                    type: string
+                passwordExpiresAt:
+                    readOnly: true
+                    type: string
+                createdAt:
+                    readOnly: true
+                    type: string
+                updatedAt:
+                    readOnly: true
+                    type: string
+        ValidateTokenRequest:
+            required:
+                - token
+            type: object
+            properties:
+                token:
+                    type: string
+        ValidateTokenResponse:
+            type: object
+            properties:
+                valid:
+                    readOnly: true
+                    type: boolean
+                userId:
+                    readOnly: true
+                    type: string
+                username:
+                    readOnly: true
+                    type: string
+                role:
+                    readOnly: true
+                    type: string
+                expiresAt:
+                    readOnly: true
+                    type: string
+tags:
+    - name: AuthService
+    - name: UserService

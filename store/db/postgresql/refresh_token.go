@@ -1,0 +1,133 @@
+package postgresql
+
+import (
+	"context"
+	"database/sql"
+	"fmt"
+	"time"
+
+	"github.com/pixb/echo-demo/go-server/store"
+)
+
+func (d *Driver) CreateRefreshToken(ctx context.Context, create *store.CreateRefreshToken) (*store.RefreshToken, error) {
+	var id int64
+	now := time.Now()
+	err := d.db.QueryRowContext(ctx,
+		`INSERT INTO refresh_tokens (user_id, token, expires_at, revoked, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+		create.UserID, create.Token, create.ExpiresAt, false, now, now).Scan(&id)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create refresh token: %w", err)
+	}
+
+	return &store.RefreshToken{
+		ID:        id,
+		UserID:    create.UserID,
+		Token:     create.Token,
+		ExpiresAt: create.ExpiresAt,
+		Revoked:   false,
+		CreatedAt: now,
+		UpdatedAt: now,
+	}, nil
+}
+
+func (d *Driver) UpdateRefreshToken(ctx context.Context, update *store.UpdateRefreshToken) (*store.RefreshToken, error) {
+	query := `UPDATE refresh_tokens SET updated_at = $1`
+	args := []interface{}{time.Now()}
+	argCount := 1
+
+	if update.Revoked != nil {
+		argCount++
+		query += fmt.Sprintf(", revoked = $%d", argCount)
+		args = append(args, *update.Revoked)
+	}
+
+	argCount++
+	query += fmt.Sprintf(" WHERE id = $%d AND deleted_at IS NULL RETURNING id, user_id, token, expires_at, revoked, created_at, updated_at", argCount)
+	args = append(args, update.ID)
+
+	var token store.RefreshToken
+	err := d.db.QueryRowContext(ctx, query, args...).Scan(
+		&token.ID, &token.UserID, &token.Token, &token.ExpiresAt, &token.Revoked, &token.CreatedAt, &token.UpdatedAt)
+	if err != nil {
+		return nil, fmt.Errorf("failed to update refresh token: %w", err)
+	}
+
+	return &token, nil
+}
+
+func (d *Driver) ListRefreshTokens(ctx context.Context, find *store.FindRefreshToken) ([]*store.RefreshToken, error) {
+	query := `SELECT id, user_id, token, expires_at, revoked, created_at, updated_at, deleted_at FROM refresh_tokens WHERE deleted_at IS NULL`
+	args := []interface{}{}
+
+	if find.ID != nil {
+		args = append(args, *find.ID)
+		query += fmt.Sprintf(" AND id = $%d", len(args))
+	}
+	if find.UserID != nil {
+		args = append(args, *find.UserID)
+		query += fmt.Sprintf(" AND user_id = $%d", len(args))
+	}
+	if find.Token != nil {
+		args = append(args, *find.Token)
+		query += fmt.Sprintf(" AND token = $%d", len(args))
+	}
+
+	rows, err := d.db.QueryContext(ctx, query, args...)
+	if err != nil {
+		return nil, fmt.Errorf("failed to list refresh tokens: %w", err)
+	}
+	defer rows.Close()
+
+	var tokens []*store.RefreshToken
+	for rows.Next() {
+		var token store.RefreshToken
+		var deletedAt *time.Time
+		if err := rows.Scan(&token.ID, &token.UserID, &token.Token, &token.ExpiresAt, &token.Revoked, &token.CreatedAt, &token.UpdatedAt, &deletedAt); err != nil {
+			return nil, fmt.Errorf("failed to scan refresh token: %w", err)
+		}
+		token.DeletedAt = deletedAt
+		tokens = append(tokens, &token)
+	}
+
+	return tokens, nil
+}
+
+func (d *Driver) DeleteRefreshToken(ctx context.Context, delete *store.DeleteRefreshToken) error {
+	_, err := d.db.ExecContext(ctx, `UPDATE refresh_tokens SET deleted_at = $1 WHERE id = $2 AND deleted_at IS NULL`, time.Now(), delete.ID)
+	if err != nil {
+		return fmt.Errorf("failed to delete refresh token: %w", err)
+	}
+	return nil
+}
+
+func (d *Driver) GetRefreshToken(ctx context.Context, token string) (*store.RefreshToken, error) {
+	var refreshToken store.RefreshToken
+	var deletedAt *time.Time
+	err := d.db.QueryRowContext(ctx,
+		`SELECT id, user_id, token, expires_at, revoked, created_at, updated_at, deleted_at FROM refresh_tokens WHERE token = $1 AND deleted_at IS NULL`,
+		token).Scan(&refreshToken.ID, &refreshToken.UserID, &refreshToken.Token, &refreshToken.ExpiresAt, &refreshToken.Revoked, &refreshToken.CreatedAt, &refreshToken.UpdatedAt, &deletedAt)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, fmt.Errorf("failed to get refresh token: %w", err)
+	}
+	refreshToken.DeletedAt = deletedAt
+	return &refreshToken, nil
+}
+
+func (d *Driver) GetRefreshTokenByID(ctx context.Context, id int64) (*store.RefreshToken, error) {
+	var refreshToken store.RefreshToken
+	var deletedAt *time.Time
+	err := d.db.QueryRowContext(ctx,
+		`SELECT id, user_id, token, expires_at, revoked, created_at, updated_at, deleted_at FROM refresh_tokens WHERE id = $1 AND deleted_at IS NULL`,
+		id).Scan(&refreshToken.ID, &refreshToken.UserID, &refreshToken.Token, &refreshToken.ExpiresAt, &refreshToken.Revoked, &refreshToken.CreatedAt, &refreshToken.UpdatedAt, &deletedAt)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, fmt.Errorf("failed to get refresh token by id: %w", err)
+	}
+	refreshToken.DeletedAt = deletedAt
+	return &refreshToken, nil
+}

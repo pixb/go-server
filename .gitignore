@@ -1,0 +1,36 @@
+# Dependency directories
+vendor/
+
+# Build output
+bin/
+out/
+
+# Database files
+data/
+*.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage.out
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+
+# Executable files
+main
+
+build
