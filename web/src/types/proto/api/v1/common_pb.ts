@@ -2,8 +2,8 @@
 // @generated from file api/v1/common.proto (package goserver.api.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_api_field_behavior } from "../../google/api/field_behavior_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file api/v1/common.proto.
  */
 export const file_api_v1_common: GenFile = /*@__PURE__*/
-  fileDesc("ChNhcGkvdjEvY29tbW9uLnByb3RvEg9nb3NlcnZlci5hcGkudjEiqAIKBFVzZXISDwoCaWQYASABKANCA+BBAxIVCgh1c2VybmFtZRgCIAEoCUID4EECEhIKBWVtYWlsGAMgASgJQgPgQQISFQoIbmlja25hbWUYBCABKAlCA+BBAhISCgVwaG9uZRgFIAEoCUID4EECEhEKBHJvbGUYBiABKAlCA+BBAxI8ChNwYXNzd29yZF9leHBpcmVzX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDEjMKCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSMwoKdXBkYXRlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBA0KyAQoTY29tLmdvc2VydmVyLmFwaS52MUILQ29tbW9uUHJvdG9QAVowZ2l0aHViLmNvbS9waXhiL2dvLXNlcnZlci9wcm90by9nZW4vYXBpL3YxO2FwaXYxogIDR0FYqgIPR29zZXJ2ZXIuQXBpLlYxygIPR29zZXJ2ZXJcQXBpXFYx4gIbR29zZXJ2ZXJcQXBpXFYxXEdQQk1ldGFkYXRh6gIRR29zZXJ2ZXI6OkFwaTo6VjFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
+  fileDesc("ChNhcGkvdjEvY29tbW9uLnByb3RvEg9nb3NlcnZlci5hcGkudjEivwIKBFVzZXISDwoCaWQYASABKANCA+BBAxIVCgh1c2VybmFtZRgCIAEoCUID4EECEhIKBWVtYWlsGAMgASgJQgPgQQISFQoIbmlja25hbWUYBCABKAlCA+BBAhISCgVwaG9uZRgFIAEoCUID4EECEigKBHJvbGUYBiABKA4yFS5nb3NlcnZlci5hcGkudjEuUm9sZUID4EEDEjwKE3Bhc3N3b3JkX2V4cGlyZXNfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgPgQQMSMwoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCA+BBAxIzCgp1cGRhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEID4EEDKjsKBFJvbGUSFAoQUk9MRV9VTlNQRUNJRklFRBAAEg4KClJPTEVfQURNSU4QARINCglST0xFX1VTRVIQAkKyAQoTY29tLmdvc2VydmVyLmFwaS52MUILQ29tbW9uUHJvdG9QAVowZ2l0aHViLmNvbS9waXhiL2dvLXNlcnZlci9wcm90by9nZW4vYXBpL3YxO2FwaXYxogIDR0FYqgIPR29zZXJ2ZXIuQXBpLlYxygIPR29zZXJ2ZXJcQXBpXFYx4gIbR29zZXJ2ZXJcQXBpXFYxXEdQQk1ldGFkYXRh6gIRR29zZXJ2ZXI6OkFwaTo6VjFiBnByb3RvMw", [file_google_api_field_behavior, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message goserver.api.v1.User
@@ -45,9 +45,9 @@ export type User = Message<"goserver.api.v1.User"> & {
   phone: string;
 
   /**
-   * @generated from field: string role = 6;
+   * @generated from field: goserver.api.v1.Role role = 6;
    */
-  role: string;
+  role: Role;
 
   /**
    * @generated from field: google.protobuf.Timestamp password_expires_at = 7;
@@ -71,4 +71,38 @@ export type User = Message<"goserver.api.v1.User"> & {
  */
 export const UserSchema: GenMessage<User> = /*@__PURE__*/
   messageDesc(file_api_v1_common, 0);
+
+/**
+ * User role enumeration.
+ *
+ * @generated from enum goserver.api.v1.Role
+ */
+export enum Role {
+  /**
+   * Unspecified role.
+   *
+   * @generated from enum value: ROLE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Admin role with system access.
+   *
+   * @generated from enum value: ROLE_ADMIN = 1;
+   */
+  ADMIN = 1,
+
+  /**
+   * User role with limited access.
+   *
+   * @generated from enum value: ROLE_USER = 2;
+   */
+  USER = 2,
+}
+
+/**
+ * Describes the enum goserver.api.v1.Role.
+ */
+export const RoleSchema: GenEnum<Role> = /*@__PURE__*/
+  enumDesc(file_api_v1_common, 0);
 
