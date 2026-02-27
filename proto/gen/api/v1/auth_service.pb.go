@@ -499,8 +499,8 @@ const file_api_v1_auth_service_proto_rawDesc = "" +
 	"\x05Login\x12\x1d.goserver.api.v1.LoginRequest\x1a\x1e.goserver.api.v1.LoginResponse\"1\xdaA\x11username,password\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/api/v1/auth/login\x12\x8c\x01\n" +
 	"\fRefreshToken\x12$.goserver.api.v1.RefreshTokenRequest\x1a%.goserver.api.v1.RefreshTokenResponse\"/\xdaA\rrefresh_token\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/api/v1/auth/refresh\x12\x88\x01\n" +
 	"\rValidateToken\x12%.goserver.api.v1.ValidateTokenRequest\x1a&.goserver.api.v1.ValidateTokenResponse\"(\xdaA\x05token\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/api/v1/auth/validate\x12q\n" +
-	"\x06Logout\x12\x1e.goserver.api.v1.LogoutRequest\x1a\x1f.goserver.api.v1.LogoutResponse\"&\xdaA\x05token\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/api/v1/auth/logoutB\xc1\x01\n" +
-	"\x13com.goserver.api.v1B\x10AuthServiceProtoP\x01Z:github.com/pixb/echo-demo/go-server/proto/gen/api/v1;apiv1\xa2\x02\x03GAX\xaa\x02\x0fGoserver.Api.V1\xca\x02\x0fGoserver\\Api\\V1\xe2\x02\x1bGoserver\\Api\\V1\\GPBMetadata\xea\x02\x11Goserver::Api::V1b\x06proto3"
+	"\x06Logout\x12\x1e.goserver.api.v1.LogoutRequest\x1a\x1f.goserver.api.v1.LogoutResponse\"&\xdaA\x05token\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/api/v1/auth/logoutB\xb7\x01\n" +
+	"\x13com.goserver.api.v1B\x10AuthServiceProtoP\x01Z0github.com/pixb/go-server/proto/gen/api/v1;apiv1\xa2\x02\x03GAX\xaa\x02\x0fGoserver.Api.V1\xca\x02\x0fGoserver\\Api\\V1\xe2\x02\x1bGoserver\\Api\\V1\\GPBMetadata\xea\x02\x11Goserver::Api::V1b\x06proto3"
 
 var (
 	file_api_v1_auth_service_proto_rawDescOnce sync.Once

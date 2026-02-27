@@ -146,8 +146,8 @@ const file_api_v1_common_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\b \x01(\x03B\x03\xe0A\x03R\tcreatedAt\x12\"\n" +
 	"\n" +
-	"updated_at\x18\t \x01(\x03B\x03\xe0A\x03R\tupdatedAtB\xbc\x01\n" +
-	"\x13com.goserver.api.v1B\vCommonProtoP\x01Z:github.com/pixb/echo-demo/go-server/proto/gen/api/v1;apiv1\xa2\x02\x03GAX\xaa\x02\x0fGoserver.Api.V1\xca\x02\x0fGoserver\\Api\\V1\xe2\x02\x1bGoserver\\Api\\V1\\GPBMetadata\xea\x02\x11Goserver::Api::V1b\x06proto3"
+	"updated_at\x18\t \x01(\x03B\x03\xe0A\x03R\tupdatedAtB\xb2\x01\n" +
+	"\x13com.goserver.api.v1B\vCommonProtoP\x01Z0github.com/pixb/go-server/proto/gen/api/v1;apiv1\xa2\x02\x03GAX\xaa\x02\x0fGoserver.Api.V1\xca\x02\x0fGoserver\\Api\\V1\xe2\x02\x1bGoserver\\Api\\V1\\GPBMetadata\xea\x02\x11Goserver::Api::V1b\x06proto3"
 
 var (
 	file_api_v1_common_proto_rawDescOnce sync.Once

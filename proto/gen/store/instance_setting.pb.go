@@ -211,8 +211,8 @@ const file_store_instance_setting_proto_rawDesc = "" +
 	"\x0eschema_version\x18\x02 \x01(\tR\rschemaVersion*E\n" +
 	"\x12InstanceSettingKey\x12$\n" +
 	" INSTANCE_SETTING_KEY_UNSPECIFIED\x10\x00\x12\t\n" +
-	"\x05BASIC\x10\x01B\xb8\x01\n" +
-	"\x12com.goserver.storeB\x14InstanceSettingProtoP\x01Z3github.com/pixb/echo-demo/go-server/proto/gen/store\xa2\x02\x03GSX\xaa\x02\x0eGoserver.Store\xca\x02\x0eGoserver\\Store\xe2\x02\x1aGoserver\\Store\\GPBMetadata\xea\x02\x0fGoserver::Storeb\x06proto3"
+	"\x05BASIC\x10\x01B\xae\x01\n" +
+	"\x12com.goserver.storeB\x14InstanceSettingProtoP\x01Z)github.com/pixb/go-server/proto/gen/store\xa2\x02\x03GSX\xaa\x02\x0eGoserver.Store\xca\x02\x0eGoserver\\Store\xe2\x02\x1aGoserver\\Store\\GPBMetadata\xea\x02\x0fGoserver::Storeb\x06proto3"
 
 var (
 	file_store_instance_setting_proto_rawDescOnce sync.Once

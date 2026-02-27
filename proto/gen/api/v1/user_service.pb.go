@@ -480,8 +480,8 @@ const file_api_v1_user_service_proto_rawDesc = "" +
 	"\fRegisterUser\x12$.goserver.api.v1.RegisterUserRequest\x1a%.goserver.api.v1.RegisterUserResponse\"A\xdaA&username,nickname,password,phone,email\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/api/v1/users\x12~\n" +
 	"\x0eGetUserProfile\x12&.goserver.api.v1.GetUserProfileRequest\x1a'.goserver.api.v1.GetUserProfileResponse\"\x1b\xdaA\x00\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/users/me\x12\x9e\x01\n" +
 	"\x11UpdateUserProfile\x12).goserver.api.v1.UpdateUserProfileRequest\x1a*.goserver.api.v1.UpdateUserProfileResponse\"2\xdaA\x14nickname,phone,email\x82\xd3\xe4\x93\x02\x15:\x01*2\x10/api/v1/users/me\x12\xa3\x01\n" +
-	"\x0eChangePassword\x12&.goserver.api.v1.ChangePasswordRequest\x1a'.goserver.api.v1.ChangePasswordResponse\"@\xdaA\x19old_password,new_password\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/api/v1/users/me/passwordB\xc1\x01\n" +
-	"\x13com.goserver.api.v1B\x10UserServiceProtoP\x01Z:github.com/pixb/echo-demo/go-server/proto/gen/api/v1;apiv1\xa2\x02\x03GAX\xaa\x02\x0fGoserver.Api.V1\xca\x02\x0fGoserver\\Api\\V1\xe2\x02\x1bGoserver\\Api\\V1\\GPBMetadata\xea\x02\x11Goserver::Api::V1b\x06proto3"
+	"\x0eChangePassword\x12&.goserver.api.v1.ChangePasswordRequest\x1a'.goserver.api.v1.ChangePasswordResponse\"@\xdaA\x19old_password,new_password\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/api/v1/users/me/passwordB\xb7\x01\n" +
+	"\x13com.goserver.api.v1B\x10UserServiceProtoP\x01Z0github.com/pixb/go-server/proto/gen/api/v1;apiv1\xa2\x02\x03GAX\xaa\x02\x0fGoserver.Api.V1\xca\x02\x0fGoserver\\Api\\V1\xe2\x02\x1bGoserver\\Api\\V1\\GPBMetadata\xea\x02\x11Goserver::Api::V1b\x06proto3"
 
 var (
 	file_api_v1_user_service_proto_rawDescOnce sync.Once

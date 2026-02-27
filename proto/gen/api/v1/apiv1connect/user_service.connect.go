@@ -8,7 +8,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	v1 "github.com/pixb/echo-demo/go-server/proto/gen/api/v1"
+	v1 "github.com/pixb/go-server/proto/gen/api/v1"
 	http "net/http"
 	strings "strings"
 )
