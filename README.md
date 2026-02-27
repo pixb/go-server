@@ -1,10 +1,17 @@
 # go-server
 
-练习建立标准的 `go-server` 服务端。
+这是一个标准的 `go-server` 服务端项目模板。
 
-写一个用户登录的示例程序。
+服务端采用三协议支持
 
-- 数据库使用 `sqlite`.
+- HTTP/JSON
+- gRPC
+- connectrcp
+
+数据库支持
+
+- sqlite
+- postgresql
 
 ## proto定义
 
@@ -37,7 +44,7 @@ buf config init
 
 加入 `googleapis` 引用.
 
-```c
+```yaml
 deps:
   - buf.build/googleapis/googleapis
 ```
@@ -63,9 +70,11 @@ buf generate
 ### 定义注册用户的服务及消息对象
 
 - 通用: common
+  - api/v1/common.proto
   - 用户信息: User
 
 - 用户服务UserService{}
+  - api/v1/user.proto
   - 注册用户RegisterUser()
     - RegisterUserRequest
     - RegisterUserResponse
@@ -80,6 +89,7 @@ buf generate
     - ChangePasswordResponse
 
 - 认证服务AuthService{}
+  - api/v1/auth.proto
   - 登录用户LoginUser()
     - LoginUserRequest
     - LoginUserResponse
