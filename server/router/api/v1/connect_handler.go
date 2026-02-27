@@ -6,8 +6,8 @@ import (
 
 	"connectrpc.com/connect"
 
-	v1pb "github.com/pixb/echo-demo/go-server/proto/gen/api/v1"
-	v1connect "github.com/pixb/echo-demo/go-server/proto/gen/api/v1/apiv1connect"
+	v1pb "github.com/pixb/go-server/proto/gen/api/v1"
+	v1connect "github.com/pixb/go-server/proto/gen/api/v1/apiv1connect"
 )
 
 type ConnectServiceHandler struct {

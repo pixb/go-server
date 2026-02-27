@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	"github.com/pixb/echo-demo/go-server/store"
+	"github.com/pixb/go-server/store"
 )
 
 func (d *Driver) UpsertInstanceSetting(ctx context.Context, upsert *store.InstanceSetting) (*store.InstanceSetting, error) {

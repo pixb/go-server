@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	v1pb "github.com/pixb/echo-demo/go-server/proto/gen/api/v1"
-	"github.com/pixb/echo-demo/go-server/store"
+	v1pb "github.com/pixb/go-server/proto/gen/api/v1"
+	"github.com/pixb/go-server/store"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

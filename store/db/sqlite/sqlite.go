@@ -7,7 +7,7 @@ import (
 	"time"
 
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/pixb/echo-demo/go-server/internal/profile"
+	"github.com/pixb/go-server/internal/profile"
 )
 
 type Driver struct {

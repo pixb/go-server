@@ -10,8 +10,8 @@ import (
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 
-	"github.com/pixb/echo-demo/go-server/server/common"
-	"github.com/pixb/echo-demo/go-server/store"
+	"github.com/pixb/go-server/server/common"
+	"github.com/pixb/go-server/store"
 )
 
 // Interceptor is a common authentication interceptor that can be used for both gRPC and Connect-Go

@@ -11,7 +11,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/metadata"
 
-	v1pb "github.com/pixb/echo-demo/go-server/proto/gen/api/v1"
+	v1pb "github.com/pixb/go-server/proto/gen/api/v1"
 )
 
 const grpcAddr = "localhost:8081"

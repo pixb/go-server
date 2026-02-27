@@ -7,12 +7,12 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/pixb/echo-demo/go-server/internal/profile"
-	"github.com/pixb/echo-demo/go-server/internal/version"
-	"github.com/pixb/echo-demo/go-server/server"
-	"github.com/pixb/echo-demo/go-server/store"
-	"github.com/pixb/echo-demo/go-server/store/db/postgresql"
-	"github.com/pixb/echo-demo/go-server/store/db/sqlite"
+	"github.com/pixb/go-server/internal/profile"
+	"github.com/pixb/go-server/internal/version"
+	"github.com/pixb/go-server/server"
+	"github.com/pixb/go-server/store"
+	"github.com/pixb/go-server/store/db/postgresql"
+	"github.com/pixb/go-server/store/db/sqlite"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

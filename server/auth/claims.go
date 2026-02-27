@@ -3,7 +3,7 @@ package auth
 import (
 	"context"
 
-	"github.com/pixb/echo-demo/go-server/store"
+	"github.com/pixb/go-server/store"
 )
 
 type UserClaims struct {

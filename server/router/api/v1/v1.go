@@ -7,13 +7,13 @@ import (
 	"connectrpc.com/connect"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/labstack/echo/v4"
-	"github.com/pixb/echo-demo/go-server/internal/profile"
-	v1pb "github.com/pixb/echo-demo/go-server/proto/gen/api/v1"
-	"github.com/pixb/echo-demo/go-server/server/auth"
-	"github.com/pixb/echo-demo/go-server/server/interceptor"
-	"github.com/pixb/echo-demo/go-server/server/middleware"
-	"github.com/pixb/echo-demo/go-server/server/service"
-	"github.com/pixb/echo-demo/go-server/store"
+	"github.com/pixb/go-server/internal/profile"
+	v1pb "github.com/pixb/go-server/proto/gen/api/v1"
+	"github.com/pixb/go-server/server/auth"
+	"github.com/pixb/go-server/server/interceptor"
+	"github.com/pixb/go-server/server/middleware"
+	"github.com/pixb/go-server/server/service"
+	"github.com/pixb/go-server/store"
 )
 
 type APIV1Service struct {

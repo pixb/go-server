@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
-	"github.com/pixb/echo-demo/go-server/store"
+	"github.com/pixb/go-server/store"
 )
 
 // 健康检查服务定义

@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/pixb/echo-demo/go-server/internal/version"
-	storepb "github.com/pixb/echo-demo/go-server/proto/gen/store"
+	"github.com/pixb/go-server/internal/version"
+	storepb "github.com/pixb/go-server/proto/gen/store"
 	"github.com/pkg/errors"
 )
 

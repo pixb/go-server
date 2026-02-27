@@ -8,7 +8,7 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"github.com/pixb/echo-demo/go-server/internal/profile"
+	"github.com/pixb/go-server/internal/profile"
 )
 
 type Driver struct {

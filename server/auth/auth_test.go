@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/pixb/echo-demo/go-server/store"
+	"github.com/pixb/go-server/store"
 	"github.com/stretchr/testify/assert"
 )
 

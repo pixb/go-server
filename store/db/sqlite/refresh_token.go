@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/pixb/echo-demo/go-server/store"
+	"github.com/pixb/go-server/store"
 )
 
 func (d *Driver) CreateRefreshToken(ctx context.Context, create *store.CreateRefreshToken) (*store.RefreshToken, error) {

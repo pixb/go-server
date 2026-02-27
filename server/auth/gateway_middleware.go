@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/pixb/echo-demo/go-server/server/common"
+	"github.com/pixb/go-server/server/common"
 )
 
 // NewGatewayAuthMiddleware creates a gRPC-Gateway authentication middleware

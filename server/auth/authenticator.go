@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	"github.com/pixb/echo-demo/go-server/store"
+	"github.com/pixb/go-server/store"
 )
 
 const PersonalAccessTokenPrefix = "pat_"

@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/pixb/echo-demo/go-server/internal/profile"
-	"github.com/pixb/echo-demo/go-server/store/cache"
+	"github.com/pixb/go-server/internal/profile"
+	"github.com/pixb/go-server/store/cache"
 )
 
 type Driver interface {

@@ -7,9 +7,9 @@ import (
 
 	"connectrpc.com/connect"
 
-	v1pb "github.com/pixb/echo-demo/go-server/proto/gen/api/v1"
-	"github.com/pixb/echo-demo/go-server/server/auth"
-	"github.com/pixb/echo-demo/go-server/store"
+	v1pb "github.com/pixb/go-server/proto/gen/api/v1"
+	"github.com/pixb/go-server/server/auth"
+	"github.com/pixb/go-server/store"
 )
 
 // UserStore is an interface that defines the methods needed by UserService
