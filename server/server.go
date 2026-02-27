@@ -88,6 +88,7 @@ func NewServer(ctx context.Context, prof *profile.Profile, store *store.Store) (
 	s.grpcServer = grpc.NewServer(grpc.UnaryInterceptor(authInterceptor.GRPCUnaryInterceptor()))
 	v1pb.RegisterUserServiceServer(s.grpcServer, s.apiV1Service)
 	v1pb.RegisterAuthServiceServer(s.grpcServer, s.apiV1Service)
+	v1pb.RegisterInstanceServiceServer(s.grpcServer, s.apiV1Service)
 
 	return s, nil
 }

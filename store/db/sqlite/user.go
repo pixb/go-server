@@ -99,6 +99,14 @@ func (d *Driver) ListUsers(ctx context.Context, find *store.FindUser) ([]*store.
 		query += " AND username = ?"
 		args = append(args, *find.Username)
 	}
+	if find.Email != nil {
+		query += " AND email = ?"
+		args = append(args, *find.Email)
+	}
+	if find.Role != nil {
+		query += " AND role = ?"
+		args = append(args, *find.Role)
+	}
 
 	rows, err := d.db.QueryContext(ctx, query, args...)
 	if err != nil {

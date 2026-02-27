@@ -108,6 +108,14 @@ func (d *Driver) ListUsers(ctx context.Context, find *store.FindUser) ([]*store.
 		args = append(args, *find.Username)
 		query += fmt.Sprintf(" AND username = $%d", len(args))
 	}
+	if find.Email != nil {
+		args = append(args, *find.Email)
+		query += fmt.Sprintf(" AND email = $%d", len(args))
+	}
+	if find.Role != nil {
+		args = append(args, *find.Role)
+		query += fmt.Sprintf(" AND role = $%d", len(args))
+	}
 
 	rows, err := d.db.QueryContext(ctx, query, args...)
 	if err != nil {

@@ -26,6 +26,10 @@ func (s *ConnectServiceHandler) RegisterConnectHandlers(mux *http.ServeMux, opts
 	// Register AuthService handler
 	authPath, authHandler := v1connect.NewAuthServiceHandler(s, opts...)
 	mux.Handle(authPath, authHandler)
+
+	// Register InstanceService handler
+	instancePath, instanceHandler := v1connect.NewInstanceServiceHandler(s, opts...)
+	mux.Handle(instancePath, instanceHandler)
 }
 
 func (s *ConnectServiceHandler) RegisterUser(ctx context.Context, req *connect.Request[v1pb.RegisterUserRequest]) (*connect.Response[v1pb.RegisterUserResponse], error) {
@@ -86,6 +90,14 @@ func (s *ConnectServiceHandler) GetUserProfile(ctx context.Context, req *connect
 
 func (s *ConnectServiceHandler) UpdateUserProfile(ctx context.Context, req *connect.Request[v1pb.UpdateUserProfileRequest]) (*connect.Response[v1pb.UpdateUserProfileResponse], error) {
 	resp, err := s.APIV1Service.UpdateUserProfile(ctx, req.Msg)
+	if err != nil {
+		return nil, err
+	}
+	return connect.NewResponse(resp), nil
+}
+
+func (s *ConnectServiceHandler) GetInstanceProfile(ctx context.Context, req *connect.Request[v1pb.GetInstanceProfileRequest]) (*connect.Response[v1pb.InstanceProfile], error) {
+	resp, err := s.APIV1Service.GetInstanceProfile(ctx, req.Msg)
 	if err != nil {
 		return nil, err
 	}

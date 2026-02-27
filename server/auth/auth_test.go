@@ -13,7 +13,7 @@ func TestGenerateAccessToken(t *testing.T) {
 	// Test data
 	userID := int64(1)
 	username := "testuser"
-	role := "user"
+	role := store.RoleUser
 	secret := "testsecret"
 
 	// Generate access token
@@ -27,7 +27,7 @@ func TestGenerateAccessToken(t *testing.T) {
 	assert.NotNil(t, claims)
 	assert.Equal(t, userID, claims.UserID)
 	assert.Equal(t, username, claims.Username)
-	assert.Equal(t, role, claims.Role)
+	assert.Equal(t, string(role), claims.Role)
 	assert.NotEmpty(t, claims.ExpiresAt)
 	assert.NotEmpty(t, claims.IssuedAt)
 	assert.NotEmpty(t, claims.NotBefore)
@@ -95,7 +95,7 @@ func TestAuthenticator_Authenticate(t *testing.T) {
 	// Test data
 	userID := int64(1)
 	username := "testuser"
-	role := "user"
+	role := store.RoleUser
 	secret := "testsecret"
 
 	// Generate access token
@@ -111,7 +111,7 @@ func TestAuthenticator_Authenticate(t *testing.T) {
 	assert.NotNil(t, result.Claims)
 	assert.Equal(t, userID, result.Claims.UserID)
 	assert.Equal(t, username, result.Claims.Username)
-	assert.Equal(t, role, result.Claims.Role)
+	assert.Equal(t, string(role), result.Claims.Role)
 
 	// Test authentication with invalid token
 	result = authenticator.Authenticate(nil, "Bearer invalidtoken")

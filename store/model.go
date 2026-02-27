@@ -61,6 +61,7 @@ type FindUser struct {
 	ID       *int64
 	Username *string
 	Email    *string
+	Role     *Role
 }
 
 type RefreshToken struct {

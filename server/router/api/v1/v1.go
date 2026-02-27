@@ -19,23 +19,27 @@ import (
 type APIV1Service struct {
 	v1pb.UnimplementedUserServiceServer
 	v1pb.UnimplementedAuthServiceServer
+	v1pb.UnimplementedInstanceServiceServer
 
-	Secret      string
-	Profile     *profile.Profile
-	Store       *store.Store
-	UserService *service.UserService
-	AuthService *service.AuthService
+	Secret          string
+	Profile         *profile.Profile
+	Store           *store.Store
+	UserService     *service.UserService
+	AuthService     *service.AuthService
+	InstanceService *service.InstanceService
 }
 
 func NewAPIV1Service(secret string, profile *profile.Profile, store *store.Store) *APIV1Service {
 	userService := service.NewUserService(secret, store)
 	authService := service.NewAuthService(secret, store)
+	instanceService := service.NewInstanceService(profile.Version, profile.Demo, store)
 	return &APIV1Service{
-		Secret:      secret,
-		Profile:     profile,
-		Store:       store,
-		UserService: userService,
-		AuthService: authService,
+		Secret:          secret,
+		Profile:         profile,
+		Store:           store,
+		UserService:     userService,
+		AuthService:     authService,
+		InstanceService: instanceService,
 	}
 }
 
@@ -72,6 +76,9 @@ func (s *APIV1Service) RegisterGateway(ctx context.Context, echoServer *echo.Ech
 		return err
 	}
 	if err := v1pb.RegisterAuthServiceHandlerServer(ctx, gwMux, s); err != nil {
+		return err
+	}
+	if err := v1pb.RegisterInstanceServiceHandlerServer(ctx, gwMux, s); err != nil {
 		return err
 	}
 
@@ -139,4 +146,8 @@ func (s *APIV1Service) UpdateUserProfile(ctx context.Context, req *v1pb.UpdateUs
 
 func (s *APIV1Service) ChangePassword(ctx context.Context, req *v1pb.ChangePasswordRequest) (*v1pb.ChangePasswordResponse, error) {
 	return s.UserService.ChangePassword(ctx, req)
+}
+
+func (s *APIV1Service) GetInstanceProfile(ctx context.Context, req *v1pb.GetInstanceProfileRequest) (*v1pb.InstanceProfile, error) {
+	return s.InstanceService.GetInstanceProfile(ctx, req)
 }
