@@ -122,7 +122,7 @@ func (s *Store) Migrate(ctx context.Context) error {
 		}
 	}
 
-	if s.profile.IsDev() {
+	if s.profile.Demo {
 		// In demo mode, we should seed the database.
 		if err := s.seed(ctx); err != nil {
 			return errors.Wrap(err, "failed to seed")

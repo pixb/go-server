@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package goserver.api.v1;
+
+option go_package = "api/v1";
+
+service InstanceService {
+  // Gets the instance profile.
+  rpc GetInstanceProfile(GetInstanceProfileRequest) returns (InstanceProfile) {
+    option (google.api.http) = {get: "/api/v1/instance/profile"};
+  }
+}
+
+// Instance profile message containing basic instance information.
+message InstanceProfile {
+  // Version is the current version of instance.
+  string version = 2;
+
+  // Demo indicates if the instance is in demo mode.
+  bool demo = 3;
+
+  // The first administrator who set up this instance.
+  // When null, instance requires initial setup (creating the first admin account).
+  User admin = 7;
+}
+
+
+// Request for instance profile.
+message GetInstanceProfileRequest {}

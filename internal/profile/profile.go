@@ -9,7 +9,8 @@ import (
 )
 
 type Profile struct {
-	Mode    string
+	// Demo indicates if the server is in demo mode
+	Demo    bool
 	Addr    string
 	Port    int
 	Data    string
@@ -20,11 +21,8 @@ type Profile struct {
 }
 
 func (p *Profile) Validate() error {
-	if p.Mode != "dev" && p.Mode != "prod" {
-		p.Mode = "dev"
-	}
 
-	if p.Mode == "prod" && p.Data == "" {
+	if !p.Demo && p.Data == "" {
 		if runtime.GOOS == "windows" {
 			p.Data = filepath.Join(os.Getenv("ProgramData"), "go-server")
 		} else {
@@ -43,7 +41,11 @@ func (p *Profile) Validate() error {
 	p.Data = dataDir
 
 	if p.Driver == "sqlite" && p.DSN == "" {
-		p.DSN = filepath.Join(dataDir, fmt.Sprintf("go-server_%s.db", p.Mode))
+		mode := "prod"
+		if p.Demo {
+			mode = "demo"
+		}
+		p.DSN = filepath.Join(dataDir, fmt.Sprintf("go-server_%s.db", mode))
 	} else if p.Driver == "postgresql" && p.DSN == "" {
 		// Default PostgreSQL DSN for development
 		p.DSN = "host=localhost port=5432 user=postgres password=password dbname=goserver sslmode=disable"
@@ -75,8 +77,4 @@ func checkDataDir(dataDir string) (string, error) {
 		}
 	}
 	return dataDir, nil
-}
-
-func (p *Profile) IsDev() bool {
-	return p.Mode != "prod"
 }

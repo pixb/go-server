@@ -41,7 +41,7 @@ func NewAPIV1Service(secret string, profile *profile.Profile, store *store.Store
 
 // createConnectInterceptors creates Connect-Go interceptors
 func (s *APIV1Service) createConnectInterceptors() connect.HandlerOption {
-	logStacktraces := s.Profile.IsDev()
+	logStacktraces := s.Profile.Demo
 	authInterceptor := auth.NewInterceptor(s.Store, s.Secret)
 	return connect.WithInterceptors(
 		interceptor.NewMetadataInterceptor(),

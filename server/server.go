@@ -43,7 +43,7 @@ func NewServer(ctx context.Context, prof *profile.Profile, store *store.Store) (
 
 	// 2.1. 创建Echo服务实例
 	echoServer := echo.New()
-	echoServer.Debug = prof.IsDev()
+	echoServer.Debug = prof.Demo
 	echoServer.HideBanner = true
 	echoServer.Use(echomiddleware.Recover())
 	echoServer.Use(echomiddleware.Logger())

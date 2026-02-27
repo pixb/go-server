@@ -31,7 +31,7 @@ var rootCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("===rootCmd Run...===")
 		prof := &profile.Profile{
-			Mode:   viper.GetString("mode"),
+			Demo:   viper.GetBool("demo"),
 			Addr:   viper.GetString("addr"),
 			Port:   viper.GetInt("port"),
 			Data:   viper.GetString("data"),
@@ -47,13 +47,39 @@ var rootCmd = &cobra.Command{
 
 // init() 方法
 func init() {
-	rootCmd.Flags().String("mode", "dev", "dev|prod")
-	rootCmd.Flags().String("addr", "0.0.0.0", "bind address")
-	rootCmd.Flags().Int("port", 8081, "HTTP prot")
-	rootCmd.Flags().String("data", "./data", "data directory")
-	rootCmd.Flags().String("driver", "sqlite", "data driver")
-	rootCmd.Flags().String("dsn", "./data/go-server.db", "database connection string")
-	rootCmd.Flags().String("secret", "your-secret-key", "Secret key for authentication")
+	viper.SetDefault("demo", false)
+	viper.SetDefault("driver", "sqlite")
+	viper.SetDefault("port", 8081)
+
+	rootCmd.PersistentFlags().Bool("demo", false, "enable demo")
+	rootCmd.PersistentFlags().String("addr", "0.0.0.0", "bind address")
+	rootCmd.PersistentFlags().Int("port", 8081, "port of server")
+	rootCmd.PersistentFlags().String("data", "./data", "data directory")
+	rootCmd.PersistentFlags().String("driver", "sqlite", "data driver")
+	rootCmd.PersistentFlags().String("dsn", "", "database connection string")
+	rootCmd.PersistentFlags().String("secret", "your-secret-key", "Secret key for authentication")
+
+	if err := viper.BindPFlag("demo", rootCmd.PersistentFlags().Lookup("demo")); err != nil {
+		panic(err)
+	}
+	if err := viper.BindPFlag("addr", rootCmd.PersistentFlags().Lookup("addr")); err != nil {
+		panic(err)
+	}
+	if err := viper.BindPFlag("port", rootCmd.PersistentFlags().Lookup("port")); err != nil {
+		panic(err)
+	}
+	if err := viper.BindPFlag("data", rootCmd.PersistentFlags().Lookup("data")); err != nil {
+		panic(err)
+	}
+	if err := viper.BindPFlag("driver", rootCmd.PersistentFlags().Lookup("driver")); err != nil {
+		panic(err)
+	}
+	if err := viper.BindPFlag("dsn", rootCmd.PersistentFlags().Lookup("dsn")); err != nil {
+		panic(err)
+	}
+	if err := viper.BindPFlag("secret", rootCmd.PersistentFlags().Lookup("secret")); err != nil {
+		panic(err)
+	}
 
 	viper.BindPFlags(rootCmd.Flags())
 	viper.SetEnvPrefix("GO_SERVER")
