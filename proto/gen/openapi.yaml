@@ -382,7 +382,12 @@ components:
                     type: string
                 role:
                     readOnly: true
+                    enum:
+                        - ROLE_UNSPECIFIED
+                        - ROLE_ADMIN
+                        - ROLE_USER
                     type: string
+                    format: enum
                 passwordExpiresAt:
                     readOnly: true
                     type: string

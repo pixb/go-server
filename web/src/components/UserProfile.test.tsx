@@ -1,7 +1,7 @@
 import { describe, test, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { UserProfile } from './UserProfile';
-import { User } from '../types/proto/api/v1/common_pb';
+import { User, Role } from '../types/proto/api/v1/common_pb';
 import { Timestamp } from '@bufbuild/protobuf';
 
 describe('UserProfile', () => {
@@ -11,7 +11,7 @@ describe('UserProfile', () => {
     email: 'test@example.com',
     nickname: 'Test User',
     phone: '13800138000',
-    role: 'user',
+    role: Role.USER,
     createdAt: Timestamp.fromDate(new Date('2024-01-15T10:30:00Z')),
     updatedAt: Timestamp.fromDate(new Date('2024-02-20T14:45:00Z')),
     passwordExpiresAt: Timestamp.fromDate(new Date('2024-04-15T10:30:00Z')),
@@ -25,7 +25,7 @@ describe('UserProfile', () => {
     expect(screen.getByTestId('user-username')).toHaveTextContent('testuser');
     expect(screen.getByTestId('user-email')).toHaveTextContent('test@example.com');
     expect(screen.getByTestId('user-phone')).toHaveTextContent('13800138000');
-    expect(screen.getByTestId('user-role')).toHaveTextContent('user');
+    expect(screen.getByTestId('user-role')).toHaveTextContent('用户');
   });
 
   test('should display formatted timestamps', () => {

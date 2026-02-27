@@ -140,7 +140,7 @@ func TestUserService_RegisterUser(t *testing.T) {
 	assert.Equal(t, req.Email, resp.User.Email)
 	assert.Equal(t, req.Nickname, resp.User.Nickname)
 	assert.Equal(t, req.Phone, resp.User.Phone)
-	assert.Equal(t, "user", resp.User.Role)
+	assert.Equal(t, v1pb.Role_ROLE_USER, resp.User.Role)
 	assert.NotNil(t, resp.User.PasswordExpiresAt)
 	assert.NotNil(t, resp.User.CreatedAt)
 	assert.NotNil(t, resp.User.UpdatedAt)

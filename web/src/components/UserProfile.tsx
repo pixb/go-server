@@ -1,6 +1,7 @@
 import React from 'react';
 import { User } from '../types/proto/api/v1/common_pb';
 import { formatTimestamp } from '../utils/time';
+import { roleToString } from '../utils/role';
 
 interface UserProfileProps {
   user: User;
@@ -22,7 +23,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user, onUpdate }) => {
           <strong>电话:</strong> {user.phone}
         </p>
         <p data-testid="user-role">
-          <strong>角色:</strong> {user.role}
+          <strong>角色:</strong> {roleToString(user.role)}
         </p>
         <p data-testid="user-created-at">
           <strong>创建时间:</strong> {formatTimestamp(user.createdAt)}

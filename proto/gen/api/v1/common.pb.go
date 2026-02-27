@@ -23,6 +23,59 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// User role enumeration.
+type Role int32
+
+const (
+	// Unspecified role.
+	Role_ROLE_UNSPECIFIED Role = 0
+	// Admin role with system access.
+	Role_ROLE_ADMIN Role = 1
+	// User role with limited access.
+	Role_ROLE_USER Role = 2
+)
+
+// Enum value maps for Role.
+var (
+	Role_name = map[int32]string{
+		0: "ROLE_UNSPECIFIED",
+		1: "ROLE_ADMIN",
+		2: "ROLE_USER",
+	}
+	Role_value = map[string]int32{
+		"ROLE_UNSPECIFIED": 0,
+		"ROLE_ADMIN":       1,
+		"ROLE_USER":        2,
+	}
+)
+
+func (x Role) Enum() *Role {
+	p := new(Role)
+	*p = x
+	return p
+}
+
+func (x Role) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Role) Descriptor() protoreflect.EnumDescriptor {
+	return file_api_v1_common_proto_enumTypes[0].Descriptor()
+}
+
+func (Role) Type() protoreflect.EnumType {
+	return &file_api_v1_common_proto_enumTypes[0]
+}
+
+func (x Role) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Role.Descriptor instead.
+func (Role) EnumDescriptor() ([]byte, []int) {
+	return file_api_v1_common_proto_rawDescGZIP(), []int{0}
+}
+
 type User struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Id                int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -30,7 +83,7 @@ type User struct {
 	Email             string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	Nickname          string                 `protobuf:"bytes,4,opt,name=nickname,proto3" json:"nickname,omitempty"`
 	Phone             string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
-	Role              string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
+	Role              Role                   `protobuf:"varint,6,opt,name=role,proto3,enum=goserver.api.v1.Role" json:"role,omitempty"`
 	PasswordExpiresAt *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=password_expires_at,json=passwordExpiresAt,proto3" json:"password_expires_at,omitempty"`
 	CreatedAt         *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt         *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -103,11 +156,11 @@ func (x *User) GetPhone() string {
 	return ""
 }
 
-func (x *User) GetRole() string {
+func (x *User) GetRole() Role {
 	if x != nil {
 		return x.Role
 	}
-	return ""
+	return Role_ROLE_UNSPECIFIED
 }
 
 func (x *User) GetPasswordExpiresAt() *timestamppb.Timestamp {
@@ -135,19 +188,24 @@ var File_api_v1_common_proto protoreflect.FileDescriptor
 
 const file_api_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x13api/v1/common.proto\x12\x0fgoserver.api.v1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xfd\x02\n" +
+	"\x13api/v1/common.proto\x12\x0fgoserver.api.v1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x94\x03\n" +
 	"\x04User\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\x03B\x03\xe0A\x03R\x02id\x12\x1f\n" +
 	"\busername\x18\x02 \x01(\tB\x03\xe0A\x02R\busername\x12\x19\n" +
 	"\x05email\x18\x03 \x01(\tB\x03\xe0A\x02R\x05email\x12\x1f\n" +
 	"\bnickname\x18\x04 \x01(\tB\x03\xe0A\x02R\bnickname\x12\x19\n" +
-	"\x05phone\x18\x05 \x01(\tB\x03\xe0A\x02R\x05phone\x12\x17\n" +
-	"\x04role\x18\x06 \x01(\tB\x03\xe0A\x03R\x04role\x12O\n" +
+	"\x05phone\x18\x05 \x01(\tB\x03\xe0A\x02R\x05phone\x12.\n" +
+	"\x04role\x18\x06 \x01(\x0e2\x15.goserver.api.v1.RoleB\x03\xe0A\x03R\x04role\x12O\n" +
 	"\x13password_expires_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\x11passwordExpiresAt\x12>\n" +
 	"\n" +
 	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tcreatedAt\x12>\n" +
 	"\n" +
-	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAtB\xb2\x01\n" +
+	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampB\x03\xe0A\x03R\tupdatedAt*;\n" +
+	"\x04Role\x12\x14\n" +
+	"\x10ROLE_UNSPECIFIED\x10\x00\x12\x0e\n" +
+	"\n" +
+	"ROLE_ADMIN\x10\x01\x12\r\n" +
+	"\tROLE_USER\x10\x02B\xb2\x01\n" +
 	"\x13com.goserver.api.v1B\vCommonProtoP\x01Z0github.com/pixb/go-server/proto/gen/api/v1;apiv1\xa2\x02\x03GAX\xaa\x02\x0fGoserver.Api.V1\xca\x02\x0fGoserver\\Api\\V1\xe2\x02\x1bGoserver\\Api\\V1\\GPBMetadata\xea\x02\x11Goserver::Api::V1b\x06proto3"
 
 var (
@@ -162,20 +220,23 @@ func file_api_v1_common_proto_rawDescGZIP() []byte {
 	return file_api_v1_common_proto_rawDescData
 }
 
+var file_api_v1_common_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_api_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_api_v1_common_proto_goTypes = []any{
-	(*User)(nil),                  // 0: goserver.api.v1.User
-	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
+	(Role)(0),                     // 0: goserver.api.v1.Role
+	(*User)(nil),                  // 1: goserver.api.v1.User
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_api_v1_common_proto_depIdxs = []int32{
-	1, // 0: goserver.api.v1.User.password_expires_at:type_name -> google.protobuf.Timestamp
-	1, // 1: goserver.api.v1.User.created_at:type_name -> google.protobuf.Timestamp
-	1, // 2: goserver.api.v1.User.updated_at:type_name -> google.protobuf.Timestamp
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	0, // 0: goserver.api.v1.User.role:type_name -> goserver.api.v1.Role
+	2, // 1: goserver.api.v1.User.password_expires_at:type_name -> google.protobuf.Timestamp
+	2, // 2: goserver.api.v1.User.created_at:type_name -> google.protobuf.Timestamp
+	2, // 3: goserver.api.v1.User.updated_at:type_name -> google.protobuf.Timestamp
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_common_proto_init() }
@@ -188,13 +249,14 @@ func file_api_v1_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_v1_common_proto_rawDesc), len(file_api_v1_common_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_api_v1_common_proto_goTypes,
 		DependencyIndexes: file_api_v1_common_proto_depIdxs,
+		EnumInfos:         file_api_v1_common_proto_enumTypes,
 		MessageInfos:      file_api_v1_common_proto_msgTypes,
 	}.Build()
 	File_api_v1_common_proto = out.File
