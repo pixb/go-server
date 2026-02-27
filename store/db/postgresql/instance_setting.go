@@ -2,6 +2,7 @@ package postgresql
 
 import (
 	"context"
+	"strconv"
 	"strings"
 
 	"github.com/pixb/go-server/store"
@@ -28,7 +29,7 @@ func (d *Driver) UpsertInstanceSetting(ctx context.Context, upsert *store.Instan
 func (d *Driver) ListInstanceSettings(ctx context.Context, find *store.FindInstanceSetting) ([]*store.InstanceSetting, error) {
 	where, args := []string{"1 = 1"}, []any{}
 	if find.Name != "" {
-		where, args = append(where, "name = $"+string(len(args)+1)), append(args, find.Name)
+		where, args = append(where, "name = $"+strconv.Itoa(len(args)+1)), append(args, find.Name)
 	}
 
 	query := `
