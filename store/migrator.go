@@ -329,11 +329,23 @@ func (s *Store) getSchemaVersionOfMigrateScript(filePath string) (string, error)
 	return fmt.Sprintf("%s.%d", minorVersion, patchVersion+1), nil
 }
 
-// execute executes a SQL statement within a transaction context.
-// It returns an error if the execution fails.
+// execute executes SQL statements within a transaction context.
+// It splits the statements by semicolon and executes them one by one.
+// It returns an error if any execution fails.
 func (*Store) execute(ctx context.Context, tx *sql.Tx, stmt string) error {
-	if _, err := tx.ExecContext(ctx, stmt); err != nil {
-		return errors.Wrap(err, "failed to execute statement")
+	// Split statements by semicolon
+	statements := strings.Split(stmt, ";")
+	for _, statement := range statements {
+		// Trim whitespace
+		statement = strings.TrimSpace(statement)
+		// Skip empty statements
+		if statement == "" {
+			continue
+		}
+		// Execute the statement
+		if _, err := tx.ExecContext(ctx, statement); err != nil {
+			return errors.Wrap(err, "failed to execute statement")
+		}
 	}
 	return nil
 }

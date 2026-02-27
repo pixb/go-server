@@ -204,14 +204,30 @@ migration
 
 ### 创建数据库操作实现
 
-```c
-db
+```bash
+store/db
+├── mysql
+│   ├── instance_setting.go
+│   ├── mysql.go
+│   ├── refresh_token.go
+│   └── user.go
 ├── postgresql
-│   └── postgresql.go
+│   ├── instance_setting.go
+│   ├── postgresql.go
+│   ├── refresh_token.go
+│   └── user.go
 └── sqlite
-    └── sqlite.go
-
+    ├── instance_setting.go
+    ├── refresh_token.go
+    ├── sqlite.go
+    └── user.go
 ```
+
+### 数据库迁移定义
+
+- [迁移文件](store/migration)
+- [seed示例数据库脚本](store/seed)
+- [迁移代码](store/migrator.go)
 
 ## 定义服务模块server
 
@@ -314,9 +330,4 @@ db
 - 定义连接状态到状态码的转换函数: `connectCodeToState()`.
 - 定义注册 `gateway` 方法: `RegisterGateway()`.
 
-## 数据库迁移定义
-
-- [迁移文件](store/migration)
-- [seed示例数据库脚本](store/seed)
-- [迁移代码](store/migrator.go)
 

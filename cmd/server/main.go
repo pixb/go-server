@@ -11,6 +11,7 @@ import (
 	"github.com/pixb/go-server/internal/version"
 	"github.com/pixb/go-server/server"
 	"github.com/pixb/go-server/store"
+	"github.com/pixb/go-server/store/db/mysql"
 	"github.com/pixb/go-server/store/db/postgresql"
 	"github.com/pixb/go-server/store/db/sqlite"
 	"github.com/spf13/cobra"
@@ -88,6 +89,8 @@ func run(ctx context.Context, prof *profile.Profile) error {
 		dbDriver, err = sqlite.NewDriver(prof)
 	case "postgresql":
 		dbDriver, err = postgresql.NewDriver(prof)
+	case "mysql":
+		dbDriver, err = mysql.NewDriver(prof)
 	default:
 		return fmt.Errorf("unsupported database driver: %s", prof.Driver)
 	}
