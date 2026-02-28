@@ -456,3 +456,23 @@ func TestConnectRPCChangePassword(t *testing.T) {
 
 	t.Logf("Connect RPC ChangePassword response status: %d", resp.StatusCode)
 }
+
+// TestConnectRPCGetInstanceProfile tests getting instance profile using Connect RPC endpoint
+func TestConnectRPCGetInstanceProfile(t *testing.T) {
+	body := []byte(`{}`)
+	req, _ := http.NewRequest("POST", ConnectrpcBaseURL+"/goserver.api.v1.InstanceService/GetInstanceProfile", bytes.NewReader(body))
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		t.Fatalf("Failed to call Connect RPC GetInstanceProfile: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		t.Errorf("Expected status 200, got %d", resp.StatusCode)
+	}
+
+	t.Logf("Connect RPC GetInstanceProfile response status: %d", resp.StatusCode)
+}

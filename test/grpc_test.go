@@ -380,3 +380,35 @@ func TestGRPCRefreshToken(t *testing.T) {
 
 	t.Logf("GRPC RefreshToken response: accessToken=%s", refreshResp.AccessToken[:30]+"...")
 }
+
+// TestGRPCGetInstanceProfile tests getting instance profile using gRPC
+func TestGRPCGetInstanceProfile(t *testing.T) {
+	conn, err := grpc.Dial(grpcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		t.Fatalf("Failed to connect to gRPC server: %v", err)
+	}
+	defer conn.Close()
+
+	client := v1pb.NewInstanceServiceClient(conn)
+	resp, err := client.GetInstanceProfile(context.Background(), &v1pb.GetInstanceProfileRequest{})
+	if err != nil {
+		t.Fatalf("Failed to get instance profile: %v", err)
+	}
+
+	// Verify response
+	if resp.Version == "" {
+		t.Error("Expected version in instance profile")
+	}
+
+	// Check if demo field exists (should be present)
+	// Note: demo is a boolean, so we just verify the response is valid
+
+	t.Logf("GRPC GetInstanceProfile response: version=%s, demo=%v", resp.Version, resp.Demo)
+
+	// Check if admin field exists
+	if resp.Admin != nil {
+		t.Logf("GRPC GetInstanceProfile admin: id=%d, username=%s", resp.Admin.Id, resp.Admin.Username)
+	} else {
+		t.Log("GRPC GetInstanceProfile: no admin user found (instance needs setup)")
+	}
+}

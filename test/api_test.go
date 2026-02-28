@@ -862,3 +862,78 @@ func TestRefreshToken(t *testing.T) {
 		t.Logf("RefreshToken response (raw): %+v", refreshResponse)
 	}
 }
+
+// TestGetInstanceProfile tests getting instance profile
+func TestGetInstanceProfile(t *testing.T) {
+	resp, err := http.Get(ApiBaseURL + "/api/v1/instance/profile")
+	if err != nil {
+		t.Fatalf("Failed to call GetInstanceProfile: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		t.Errorf("Expected status 200, got %d", resp.StatusCode)
+	}
+
+	// Read the response body once
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		t.Fatalf("Failed to read response body: %v", err)
+	}
+
+	// Try to decode as unified response first
+	var unifiedResp ApiUnifiedResponse
+	if err := json.Unmarshal(body, &unifiedResp); err == nil {
+		// Check unified response format for success
+		if unifiedResp.State != 0 {
+			t.Errorf("Expected state 0 for success, got %d", unifiedResp.State)
+		}
+
+		// Check if data exists in the response
+		if unifiedResp.Data == nil {
+			t.Error("Expected data field to be non-nil for success response")
+			return
+		}
+
+		// Check instance profile data
+		profileData, ok := unifiedResp.Data.(map[string]interface{})
+		if !ok {
+			t.Error("Expected data field to be an object")
+			return
+		}
+
+		// Check if version exists
+		if _, ok := profileData["version"]; !ok {
+			t.Error("Expected version field in instance profile")
+		}
+
+		// Check if demo exists
+		if _, ok := profileData["demo"]; !ok {
+			t.Error("Expected demo field in instance profile")
+		}
+
+		t.Logf("GetInstanceProfile response (unified): %+v", unifiedResp)
+	} else {
+		// Try to decode as raw gRPC response
+		var instanceResponse map[string]interface{}
+		if err := json.Unmarshal(body, &instanceResponse); err != nil {
+			t.Fatalf("Failed to decode response: %v", err)
+		}
+
+		// Check if version exists directly
+		if _, ok := instanceResponse["version"]; !ok {
+			if _, ok := instanceResponse["Version"]; !ok {
+				t.Error("Expected version field in instance profile response")
+			}
+		}
+
+		// Check if demo exists directly
+		if _, ok := instanceResponse["demo"]; !ok {
+			if _, ok := instanceResponse["Demo"]; !ok {
+				t.Error("Expected demo field in instance profile response")
+			}
+		}
+
+		t.Logf("GetInstanceProfile response (raw): %+v", instanceResponse)
+	}
+}
